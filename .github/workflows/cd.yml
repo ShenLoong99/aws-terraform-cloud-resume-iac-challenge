@@ -32,6 +32,7 @@ jobs:
         run: |
           # Pull everything from Terraform Outputs in one go
           echo "API_URL=$(terraform output -raw api_url)" >> $GITHUB_ENV
+          echo "SITE_URL=$(terraform output -raw website_url)" >> $GITHUB_ENV
           echo "BUCKET_NAME=$(terraform output -raw website_bucket_id)" >> $GITHUB_ENV
           echo "DIST_ID=$(terraform output -raw cloudfront_dist_id)" >> $GITHUB_ENV
           echo "AWS_REGION=$(terraform output -raw aws_region)" >> $GITHUB_ENV
@@ -74,11 +75,11 @@ jobs:
       - name: Test Visitor Counter API
         run: |
           # 1. Fetch current count
-          COUNT1=$(curl -s "${{ env.SITE_URL }}/api/getcount" | jq '.count')
+          COUNT1=$(curl -s "${{ env.API_URL }}" | jq '.count')
           
           # 2. Wait a second and fetch again
           sleep 1
-          COUNT2=$(curl -s "${{ env.SITE_URL }}/api/getcount" | jq '.count')
+          COUNT2=$(curl -s "${{ env.API_URL }}" | jq '.count')
           
           # 3. Verify the count increased
           if [ "$COUNT2" -gt "$COUNT1" ]; then
