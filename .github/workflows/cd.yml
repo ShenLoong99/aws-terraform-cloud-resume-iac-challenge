@@ -47,7 +47,8 @@ jobs:
           # Use the environment variables saved above
           GIT_REPO="${{ github.server_url }}/${{ github.repository }}"
           GIT_PROF="${{ github.server_url }}/${{ github.actor }}"
-          LINKEDIN=$(terraform output -raw linkedin)
+          GITHUB_USER="${{ github.repository_owner }}"
+          LINKEDIN=$(curl -s https://api.github.com/users/$GITHUB_USER/social_accounts | jq -r '.[] | select(.url | contains("linkedin.com")) | .url')
           EMAIL="${{ secrets.EMAIL_ADDRESS }}"
 
           sed -i "s|__API_URL__|$API_URL|g" ./website-files/index.html

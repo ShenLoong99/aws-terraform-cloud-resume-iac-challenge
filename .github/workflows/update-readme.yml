@@ -12,41 +12,28 @@ on:
 jobs:
   update-docs:
     runs-on: ubuntu-latest
-    environment: prod
     # Added permissions to ensure the GITHUB_TOKEN can push the changes back
     permissions:
       contents: write 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-          terraform_wrapper: false # Recommended for cleaner script output
-
-      - name: Terraform Init
-        run: terraform init
       
       - name: Inject Dynamic Data
         run: |
-          # Capture and Trim whitespace from Terraform Output
-          # The 'tr -d' removes potential carriage returns from Windows-based environments
-          LINKEDIN=$(terraform output -raw linkedin | tr -d '\r' | xargs)
+          GITHUB_USER="${{ github.repository_owner }}"
+          
+          # Fetch LinkedIn from GitHub Profile - Ensuring the variable name matches the sed command below
+          LINKEDIN=$(curl -s https://api.github.com/users/$GITHUB_USER/social_accounts | jq -r '.[] | select(.url | contains("linkedin.com")) | .url')
+          
           REPO_URL="${{ github.server_url }}/${{ github.repository }}"
           REPO_NAME="${{ github.repository }}"
 
-          # Debugging: Check if variables are empty (optional but helpful)
-          echo "Processing Repository: $REPO_NAME"
-
-          # Use double quotes for the variable and single quotes for the sed command 
-          # to ensure the Shell doesn't interfere with the delimiters
+          # Replace placeholders in the template
           sed -i "s|{{REPO_NAME}}|$REPO_NAME|g" README.template.md
           sed -i "s|{{REPO_URL}}|$REPO_URL|g" README.template.md
           sed -i "s|{{LINKEDIN_URL}}|$LINKEDIN|g" README.template.md
           
-          # Overwrite the main README
           mv README.template.md README.md
           
       - name: Commit Changes
