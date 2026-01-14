@@ -43,6 +43,17 @@ resource "aws_s3_bucket_public_access_block" "resume_block" {
   restrict_public_buckets = true
 }
 
+# SECURITY: Enable Server-Side Encryption by Default (SSE-S3)
+resource "aws_s3_bucket_server_side_encryption_configuration" "resume_encryption" {
+  bucket = aws_s3_bucket.resume_bucket.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
+}
+
 # Commented out to use GitHub Actions for uploading website files
 # Upload the index.html file to the S3 Bucket
 # resource "aws_s3_object" "index" {
