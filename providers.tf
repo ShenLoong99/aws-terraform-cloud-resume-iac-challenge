@@ -1,11 +1,11 @@
 terraform {
-  cloud { 
-    organization = "my-terraform-aws-projects-2025" 
+  cloud {
+    organization = "my-terraform-aws-projects-2025"
 
-    workspaces { 
-      name = "aws-terraform-cloud-resume-iac-challenge" 
-    } 
-  } 
+    workspaces {
+      name = "aws-terraform-cloud-resume-iac-challenge"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
