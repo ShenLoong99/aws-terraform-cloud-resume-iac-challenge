@@ -53,6 +53,12 @@ jobs:
           echo "DIST_ID=$DIST_ID" >> $GITHUB_ENV
           echo "SITE_URL=$API_URL" >> $GITHUB_ENV
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::871308866502:role/GitHubActionRole
+          aws-region: ${{ env.AWS_REGION }}
+
       - name: Deploy to S3
         run: aws s3 sync ./website-files s3://${{ env.BUCKET_NAME }} --delete
 
