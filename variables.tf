@@ -4,8 +4,7 @@ variable "aws_region" {
   default     = "ap-southeast-1"
 }
 
-# variable "domain_name" {
-#   description = "Domain name for the resume website"
-#   type        = string
-#   default     = "my-cloud-resume.com"
-# }
+variable "project_name" {
+  description = "Project name prefix"
+  default     = "cloud-resume"
+}
