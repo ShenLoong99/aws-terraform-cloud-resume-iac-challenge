@@ -330,4 +330,4 @@ export AWS_SECRET_ACCESS_KEY=&lt;your-aws-secret-access-key&gt;</pre>
 [license-shield]: https://img.shields.io/github/license/ShenLoong99/aws-terraform-cloud-resume-iac-challenge.svg?style=for-the-badge
 [license-url]: https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: [33m╷[0m[0m [33m│[0m [0m[1m[33mWarning: [0m[0m[1mNo outputs found[0m [33m│[0m [0m [33m│[0m [0m[0mThe state file either has no outputs defined, or all the defined outputs [33m│[0m [0mare empty. Please define an output in your configuration with the `output` [33m│[0m [0mkeyword and run `terraform refresh` for it to become available. If you are [33m│[0m [0musing interpolation, please verify the interpolated value is not empty. You [33m│[0m [0mcan use the `terraform console` command to assist. [33m╵[0m[0m
+[linkedin-url]: https://www.linkedin.com/in/si-kai-tan
