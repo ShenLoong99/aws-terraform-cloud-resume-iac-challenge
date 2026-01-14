@@ -31,13 +31,18 @@ jobs:
       
       - name: Inject Dynamic Data
         run: |
-          GITHUB_USER="${{ github.repository_owner }}"
+          # Capture and Trim whitespace from Terraform Output
+          # The 'tr -d' removes potential carriage returns from Windows-based environments
+          LINKEDIN=$(terraform output -raw linkedin | tr -d '\r' | xargs)
           REPO_URL="${{ github.server_url }}/${{ github.repository }}"
-          # Fetch LinkedIn from GitHub Profile
-          LINKEDIN=$(terraform output -raw linkedin)
+          REPO_NAME="${{ github.repository }}"
 
-          # Replace placeholders in the template
-          sed -i "s|{{REPO_NAME}}|${{ github.repository }}|g" README.template.md
+          # Debugging: Check if variables are empty (optional but helpful)
+          echo "Processing Repository: $REPO_NAME"
+
+          # Use double quotes for the variable and single quotes for the sed command 
+          # to ensure the Shell doesn't interfere with the delimiters
+          sed -i "s|{{REPO_NAME}}|$REPO_NAME|g" README.template.md
           sed -i "s|{{REPO_URL}}|$REPO_URL|g" README.template.md
           sed -i "s|{{LINKEDIN_URL}}|$LINKEDIN|g" README.template.md
           
