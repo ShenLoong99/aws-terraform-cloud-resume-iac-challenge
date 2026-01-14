@@ -43,14 +43,28 @@ resource "aws_s3_bucket_public_access_block" "resume_block" {
   restrict_public_buckets = true
 }
 
-resource "aws_s3_object" "index" {
-  bucket = aws_s3_bucket.resume_bucket.id
-  key    = "index.html"
-  content = templatefile("${path.module}/website-files/index.html", {
-    api_url = "${aws_apigatewayv2_api.resume_api_gw.api_endpoint}/getcount"
-  })
-  content_type = "text/html"
-  etag = md5(templatefile("${path.module}/website-files/index.html", {
-    api_url = "${aws_apigatewayv2_api.resume_api_gw.api_endpoint}/getcount"
-  }))
-}
+# Commented out to use GitHub Actions for uploading website files
+# Upload the index.html file to the S3 Bucket
+# resource "aws_s3_object" "index" {
+#   bucket       = aws_s3_bucket.resume_bucket.id
+#   key          = "index.html"
+#   content_type = "text/html"
+
+#   # INJECTING VARIABLES HERE
+#   content = templatefile("${path.module}/website-files/index.html", {
+#     api_url            = "${aws_apigatewayv2_api.resume_api_gw.api_endpoint}/getcount"
+#     github_repo_url    = "https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge"
+#     github_profile_url = "https://github.com/ShenLoong99"
+#     linkedin_url       = "https://www.linkedin.com/in/si-kai-tan/"
+#     email_address      = "tansikai554@gmail.com"
+#   })
+
+#   # Forces an update if content changes 
+#   etag = md5(templatefile("${path.module}/website-files/index.html", {
+#     api_url            = "${aws_apigatewayv2_api.resume_api_gw.api_endpoint}/getcount"
+#     github_repo_url    = "https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge"
+#     github_profile_url = "https://github.com/ShenLoong99"
+#     linkedin_url       = "https://www.linkedin.com/in/si-kai-tan/"
+#     email_address      = "tansikai554@gmail.com"
+#   }))
+# }
