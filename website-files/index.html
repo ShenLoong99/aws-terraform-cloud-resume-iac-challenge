@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tan Si Kai | Cloud Infrastructure & DevSecOps Engineer</title>
+    <title>Tan Si Kai | Cloud Solutions Architect & DevSecOps Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -77,7 +77,8 @@
 
         .experience-item { margin-bottom: 1.5rem; }
         .experience-item h4 { color: var(--text); font-size: 1rem; }
-        .experience-item p { color: var(--text-light); font-size: 0.9rem; }
+        .experience-item .sub-text { color: var(--primary); font-weight: 600; font-size: 0.85rem; }
+        .experience-item p { color: var(--text-light); font-size: 0.9rem; margin-top: 4px; }
 
         .blog-section { 
             background: #f8fafc; 
@@ -95,6 +96,7 @@
             color: white !important;
             border-radius: 6px;
             text-decoration: none;
+            font-weight: 600;
         }
 
         .counter { 
@@ -129,20 +131,38 @@
             </header>
 
             <div class="summary">
-                <p>Tech professional with 5+ years of experience across Software Development and Project Management. Specialized in delivering robust cloud infrastructure and maintaining high-quality code through end-to-end automation.</p>
+                <p>Tech professional with 5+ years of experience across Project Management, Software QA, and Cloud Infrastructure[cite: 56]. [cite_start]Dedicated to end-to-end product lifecycle ownership and high-performance serverless architecture[cite: 59].</p>
             </div>
 
             <section>
-                <h2><i class="fas fa-tools"></i> Technical Expertise</h2>
+                <h2><i class="fas fa-layer-group"></i> Built With</h2>
                 <ul class="skills-list">
-                    <li>AWS (S3, Lambda, CloudFront)</li>
-                    <li>Terraform (IaC)</li>
-                    <li>CI/CD (GitHub Actions)</li>
-                    <li>Python & Boto3</li>
-                    <li>JavaScript & PHP</li>
-                    <li>NoSQL (DynamoDB) & MySQL</li>
-                    <li>Agile Scrum</li>
+                    <li>AWS S3 & CloudFront (OAC)</li>
+                    <li>AWS Lambda (Python/Boto3)</li>
+                    <li>Amazon API Gateway</li>
+                    <li>Amazon DynamoDB</li>
+                    <li>Terraform (Infrastructure as Code)</li>
+                    <li>GitHub Actions (CI/CD)</li>
                 </ul>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-briefcase"></i> Work Experience</h2>
+                <div class="experience-item">
+                    <h4>Software Quality Assurance</h4>
+                    <span class="sub-text">SiteGiant | Jun 2025 - Present</span>
+                    <p>Prioritizing testing for feature releases and maintaining clear, detailed test cases using Playwright and Kiwi TCMS.</p>
+                </div>
+                <div class="experience-item">
+                    <h4>Project Manager</h4>
+                    <span class="sub-text">VeecoTech Group | Jul 2022 - Jun 2025</span>
+                    <p>Led Agile teams to deliver complex systems for MCMC and MBSP, using Asana for timeline and resource planning.</p>
+                </div>
+                <div class="experience-item">
+                    <h4>Software Developer</h4>
+                    <span class="sub-text">VeecoTech Group | Jul 2021 - Jun 2022</span>
+                    <p>Developed scalable backend solutions using PHP, Laravel, and JavaScript.</p>
+                </div>
             </section>
 
             <section>
@@ -158,21 +178,43 @@
             </section>
 
             <section>
+                <h2><i class="fas fa-project-diagram"></i> Cloud Portfolio</h2>
+                <div class="experience-item">
+                    <h4>aws-terraform-2-tier-webapp</h4>
+                    <p>A secure VPC environment with EC2 (app layer), RDS (database), and ALB routing.</p>
+                </div>
+                <div class="experience-item">
+                    <h4>aws-terraform-cloud-dictionary</h4>
+                    <p>Serverless dictionary app built with Amplify, Lambda, and DynamoDB.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                <div class="experience-item">
+                    <h4>Bachelor's Degree in Computing</h4>
+                    <span class="sub-text">Coventry University | 2019 - 2021</span>
+                </div>
+                <div class="experience-item">
+                    <h4>Diploma in Internet Technology</h4>
+                    <span class="sub-text">Tunku Abdul Rahman University of Management and Technology</span>
+                </div>
+            </section>
+
+            <section>
                 <h2><i class="fas fa-award"></i> Professional Certifications</h2>
                 <ul class="skills-list">
-                    <li>AWS Certified Solutions Architect – Associate</li>
+                    <li>AWS Certified Solutions Architect - Associate</li>
                     <li>HashiCorp Certified: Terraform Associate</li>
-                    <li>Advanced Microservices Architecture</li>
                 </ul>
             </section>
 
             <section class="blog-section">
                 <h3>The Cloud Resume Challenge</h3>
                 <p>
-                    I codified this entire resume platform using <strong>Terraform</strong> and <strong>GitHub Actions</strong>. 
-                    The architecture features a secure <strong>CloudFront OAC</strong> S3 bucket and a serverless 
-                    visitor counter powered by AWS Lambda and DynamoDB.
+                    I built this serverless website to demonstrate full-stack cloud proficiency. The architecture includes a <strong>CloudFront OAC</strong> secured S3 bucket, a <strong>GitHub Actions</strong> CI/CD pipeline, and a visit counter powered by Lambda and DynamoDB.
                 </p>
+                <p>View the challenge here: <a href="https://cloudresumechallenge.dev/docs/extensions/terraform-getting-started/">Terraform Your Cloud Resume Challenge</a></p>
                 <a href="__GITHUB_REPO__" class="btn">View Source Code</a>
             </section>
 
@@ -189,7 +231,7 @@
     </div>
 
     <script>
-        const apiURL = '__API_URL__';
+        const apiURL = '__API_URL__'; // Patched by GitHub Actions
         async function getCounter() {
             try {
                 const response = await fetch(apiURL);
