@@ -20,6 +20,9 @@ jobs:
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
           terraform_wrapper: false # Recommended for cleaner script output
+
+      - name: Terraform Init
+        run: terraform init
       
       - name: Inject Dynamic Data
         run: |
