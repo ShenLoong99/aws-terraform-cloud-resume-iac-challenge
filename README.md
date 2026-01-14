@@ -177,8 +177,12 @@ export AWS_SECRET_ACCESS_KEY=&lt;your-aws-secret-access-key&gt;</pre>
 </ul>
 
 <h3>Merge to Main & Deployment</h3>
-<img src="assets/ci-githubactions-logs.png" alt="ci-githubactions-logs" width="350" /><br>
-<img src="assets/cd-githubactions-logs.png" alt="cd-githubactions-logs" width="350" />
+<table border="0">
+   <tr>
+      <td> <img src="assets/ci-githubactions-logs.png" alt="ci-githubactions-logs" /> </td>
+      <td> <img src="assets/cd-githubactions-logs.png" alt="cd-githubactions-logs" /> </td>
+   </tr>
+</table>
 <p>Once the PR is merged into <code>main</code>, the <strong>Production Deployment</strong> workflow (<code>cd.yml</code>) takes over:</p>
 <ol>
    <li><strong>Terraform Apply:</strong> Automatically provisions/updates S3, CloudFront, Lambda, and DynamoDB.</li>
