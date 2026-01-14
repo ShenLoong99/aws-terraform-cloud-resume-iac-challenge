@@ -54,7 +54,7 @@ jobs:
           echo "SITE_URL=$API_URL" >> $GITHUB_ENV
 
       - name: Deploy to S3
-        run: aws s3 sync ./frontend s3://${{ env.BUCKET_NAME }} --delete
+        run: aws s3 sync ./website-files s3://${{ env.BUCKET_NAME }} --delete
 
       - name: Invalidate CloudFront
         run: aws cloudfront create-invalidation --distribution-id ${{ env.DIST_ID }} --paths "/*"
