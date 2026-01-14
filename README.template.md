@@ -164,7 +164,10 @@ export AWS_SECRET_ACCESS_KEY=&lt;your-aws-secret-access-key&gt;</pre>
 <h3>Development & Push Commit</h3>
 <p>Work on your local machine. When you push a commit to a feature branch:</p>
 <ul>
-   <li><strong>Continuous Integration (CI):</strong> The <code>ci.yml</code> workflow triggers.</li>
+   <li>
+    <strong>Continuous Integration (CI):</strong> The <code>ci.yml</code> workflow triggers.<br>
+    <img src="assets/ci-githubactions-logs.png" alt="ci-githubactions-logs" />
+    </li>
    <li><strong>Validation:</strong> It runs <code>terraform fmt -check</code> and <code>terraform validate</code> to ensure your IaC is syntactically correct.</li>
    <li><strong>Linting:</strong> Your Python Lambda code in <code>/lambda</code> is checked for errors.</li>
 </ul>
@@ -177,13 +180,8 @@ export AWS_SECRET_ACCESS_KEY=&lt;your-aws-secret-access-key&gt;</pre>
 </ul>
 
 <h3>Merge to Main & Deployment</h3>
-<table border="0">
-   <tr>
-      <td> <img src="assets/ci-githubactions-logs.png" alt="ci-githubactions-logs" /> </td>
-      <td> <img src="assets/cd-githubactions-logs.png" alt="cd-githubactions-logs" /> </td>
-   </tr>
-</table>
 <p>Once the PR is merged into <code>main</code>, the <strong>Production Deployment</strong> workflow (<code>cd.yml</code>) takes over:</p>
+<img src="assets/cd-githubactions-logs.png" alt="cd-githubactions-logs" />
 <ol>
    <li><strong>Terraform Apply:</strong> Automatically provisions/updates S3, CloudFront, Lambda, and DynamoDB.</li>
    <li><strong>Dynamic Injection:</strong> The workflow pulls <code>api_url</code> and <code>linkedin</code> from Terraform outputs and uses <code>sed</code> to patch your <code>index.html</code>.</li>
@@ -260,6 +258,23 @@ export AWS_SECRET_ACCESS_KEY=&lt;your-aws-secret-access-key&gt;</pre>
       </tr>
    </tbody>
 </table>
+
+<h3 id="technical-challenges">🧠 Technical Challenges & Lessons Learned</h3>
+<p>
+    During the development of the automated documentation pipeline, I explored several advanced GitOps strategies to allow the GitHub Actions bot to update the README while maintaining strict branch protection on <code>main</code>.
+</p>
+<p>I evaluated the following industry-standard patterns:</p>
+<ul>
+    <li><strong>Option 1: Grant Bypass Permissions (Bot Actor):</strong> Attempted to grant the <code>github-actions</code> bot specific bypass rights to push directly to <code>main</code> without a PR.</li>
+    <li><strong>Option 2: Automated Pull Requests:</strong> Implementing a workflow where the bot opens a PR for every doc change to satisfy the "Require PR" rule.</li>
+    <li><strong>Option 3: Custom Administrative PAT:</strong> Using a Personal Access Token with elevated scopes to override protection hooks.</li>
+</ul>
+<p>
+    <strong>The Hurdle:</strong> These implementations were ultimately deprioritized because <strong>GitHub Free</strong> tier (for personal accounts) limits the "Bypass Pull Request" functionality for specific actors. Furthermore, creating a chain of dependencies (Bot PR -> Automated Merge -> Deployment) added significant complexity that was not cost-effective for a single-developer resume project.
+</p>
+<p>
+    <strong>The Solution:</strong> I opted for a cleaner, more sustainable approach by implementing Path Filtering. This ensures the documentation workflow only triggers when essential template or infrastructure files change, minimizing the need for constant bypasses while keeping the repository's security posture intact
+</p>
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
 
 <h2 id="cost-optimization">Cost Optimization</h2>
