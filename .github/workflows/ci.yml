@@ -1,6 +1,12 @@
 name: "Infrastructure CI"
 on:
   pull_request:
+    paths-ignore:
+      - 'README.md'
+      - 'README.template.md'
+      - 'update-readme.yml'
+      - '.gitignore'
+      - 'assets/**'
     branches:
       - main
 

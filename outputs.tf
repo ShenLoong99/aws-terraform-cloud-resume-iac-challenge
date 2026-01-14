@@ -23,22 +23,12 @@ output "website_url" {
   value       = "https://${aws_cloudfront_distribution.s3_distribution.domain_name}"
 }
 
+output "aws_region" {
+  description = "The AWS region where resources are deployed"
+  value       = var.aws_region
+}
+
 output "linkedin" {
-  description = "The LinkedIn profile URL"
-  value       = "https://www.linkedin.com/in/tan-si-kai"
-}
-
-output "github_repo" {
-  description = "The GitHub repository URL"
-  value       = "https://github.com/tansikai/aws-terraform-cloud-resume-iac-challenge"
-}
-
-output "github_profile" {
-  description = "The GitHub profile URL"
-  value       = "https://github.com/ShenLoong99"
-}
-
-output "email_address" {
-  description = "The email address"
-  value       = "tansikai554@gmail.com"
+  description = "The LinkedIn URL"
+  value       = "https://www.linkedin.com/in/si-kai-tan/"
 }
