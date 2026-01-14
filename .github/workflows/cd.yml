@@ -28,40 +28,27 @@ jobs:
         # With TFC 'Auto-apply' enabled in the UI, this triggers the deploy immediately
         run: terraform apply -auto-approve
 
-      - name: Set Environment Variables from Terraform and GitHub
+      - name: Set Environment Variables
         run: |
-          # Capture dynamic values from your outputs.tf
-          API_URL=$(terraform output -raw api_url)
-          BUCKET_ID=$(terraform output -raw website_bucket_id)
-          DIST_ID=$(terraform output -raw cloudfront_dist_id)
-          LINKEDIN=$(terraform output -raw linkedin)
+          # Pull everything from Terraform Outputs in one go
+          echo "API_URL=$(terraform output -raw api_url)" >> $GITHUB_ENV
+          echo "BUCKET_NAME=$(terraform output -raw website_bucket_id)" >> $GITHUB_ENV
+          echo "DIST_ID=$(terraform output -raw cloudfront_dist_id)" >> $GITHUB_ENV
+          echo "AWS_REGION=$(terraform output -raw aws_region)" >> $GITHUB_ENV
 
-          # Capture GitHub information directly from Contexts
+      - name: Inject into HTML
+        run: |
+          # Use the environment variables saved above
           GIT_REPO="${{ github.server_url }}/${{ github.repository }}"
           GIT_PROF="${{ github.server_url }}/${{ github.actor }}"
-          
-          # Use Environment Secrets for personal data
+          LINKEDIN=$(terraform output -raw linkedin)
           EMAIL="${{ secrets.EMAIL_ADDRESS }}"
 
-          # Inject values into index.html
           sed -i "s|__API_URL__|$API_URL|g" ./website-files/index.html
           sed -i "s|__GITHUB_REPO__|$GIT_REPO|g" ./website-files/index.html
           sed -i "s|__GITHUB_PROFILE__|$GIT_PROF|g" ./website-files/index.html
           sed -i "s|__LINKEDIN_URL__|$LINKEDIN|g" ./website-files/index.html
           sed -i "s|__EMAIL__|$EMAIL|g" ./website-files/index.html
-
-          # Save for subsequent steps
-          echo "BUCKET_NAME=$BUCKET_ID" >> $GITHUB_ENV
-          echo "DIST_ID=$DIST_ID" >> $GITHUB_ENV
-          echo "SITE_URL=$API_URL" >> $GITHUB_ENV
-
-      - name: Get Region from Terraform
-        id: get_region
-        run: |
-          REGION=$(terraform output -raw aws_region)
-          
-          echo "AWS_REGION=$REGION" >> $GITHUB_ENV
-          echo "Detected Region: $REGION"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
