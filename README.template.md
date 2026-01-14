@@ -10,7 +10,7 @@
 
 <div>
    <h1>☁️ AWS Cloud Resume Challenge</h1>
-   <img src="assets/my-resume-website.png" alt="my-resume-website" />
+   <img src="assets/cover-image.jpg" alt="cover-image" />
    <p>A production-grade, serverless resume website built with <strong>Terraform</strong>, <strong>AWS</strong>, and <strong>GitHub Actions</strong>.<br /><a href="#about-the-project"><strong>Explore the docs »</strong></a></p>
 </div>
 <details>
@@ -200,7 +200,10 @@ export AWS_SECRET_ACCESS_KEY=&lt;your-aws-secret-access-key&gt;</pre>
 <h2 id="usage">Usage</h2>
 <p> Once deployed, the project provides two live interfaces: </p>
 <ul>
-   <li><strong>Resume Website:</strong> Accessible via the <code>website_url</code> (CloudFront Domain).</li>
+   <li>
+    <strong>Resume Website:</strong> Accessible via the <code>website_url</code> (CloudFront Domain).<br>
+    <img src="assets/my-resume-website.png" alt="my-resume-website" />
+    </li>
    <li><strong>Visitor API:</strong> Testable via <code>curl</code> using the <code>api_url</code> output.</li>
 </ul>
 
