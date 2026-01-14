@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tan Si Kai | Cloud Infrastructure Engineer</title>
+    <title>Tan Si Kai | Cloud Infrastructure & DevSecOps Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -27,21 +27,17 @@
             min-height: 100vh;
         }
 
-        .container {
-            max-width: 850px;
-            margin: auto;
-        }
+        .container { max-width: 850px; margin: auto; }
 
         .card { 
             background: var(--card-bg); 
-            padding: 3.5rem; 
+            padding: 3rem; 
             border-radius: 16px; 
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); 
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); 
             position: relative;
             overflow: hidden;
         }
 
-        /* Subtle top border accent */
         .card::before {
             content: "";
             position: absolute;
@@ -50,57 +46,46 @@
             background: var(--primary);
         }
 
-        header { text-align: center; margin-bottom: 3rem; }
+        header { text-align: center; margin-bottom: 2.5rem; }
         h1 { font-size: 2.8rem; letter-spacing: -0.025em; margin-bottom: 0.5rem; }
-        header p { color: var(--text-light); font-size: 1.2rem; font-weight: 500; }
+        header p { color: var(--text-light); font-size: 1.1rem; font-weight: 500; }
+
+        .summary { margin-bottom: 2rem; color: var(--text-light); text-align: center; }
 
         h2 { 
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--primary); 
-            margin: 2.5rem 0 1.2rem;
+            margin: 2rem 0 1rem;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        h2::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #e2e8f0;
-        }
+        h2::after { content: ""; flex: 1; height: 1px; background: #e2e8f0; }
 
-        /* Skills Tag Styling */
-        .skills-list { display: flex; flex-wrap: wrap; gap: 12px; list-style: none; }
+        .skills-list { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; }
         .skills-list li { 
             background: var(--accent); 
             color: var(--primary-dark); 
-            padding: 6px 16px; 
-            border-radius: 8px; 
+            padding: 5px 14px; 
+            border-radius: 6px; 
             font-weight: 600; 
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-        .skills-list li:hover { 
-            transform: translateY(-3px);
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.4);
+            font-size: 0.8rem;
         }
 
-        /* Journey/Blog Box */
+        .experience-item { margin-bottom: 1.5rem; }
+        .experience-item h4 { color: var(--text); font-size: 1rem; }
+        .experience-item p { color: var(--text-light); font-size: 0.9rem; }
+
         .blog-section { 
             background: #f8fafc; 
-            padding: 24px; 
-            border: 1px solid #e2e8f0;
+            padding: 20px; 
             border-left: 5px solid var(--primary); 
-            border-radius: 0 12px 12px 0;
+            border-radius: 0 8px 8px 0;
             margin: 2rem 0;
         }
-        .blog-section h3 { margin-bottom: 10px; color: var(--text); }
         
         .btn {
             display: inline-block;
@@ -110,36 +95,29 @@
             color: white !important;
             border-radius: 6px;
             text-decoration: none;
-            transition: background 0.2s;
         }
-        .btn:hover { background: var(--primary-dark); text-decoration: none !important; }
 
-        /* Counter Styling */
         .counter { 
-            margin-top: 4rem; 
-            padding: 20px;
+            margin-top: 3rem; 
+            padding-top: 20px;
             border-top: 1px solid #f1f5f9;
             text-align: center;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-light);
         }
-        #visitor-count { font-weight: 800; color: var(--primary); font-size: 1.2rem; }
+        #visitor-count { font-weight: 800; color: var(--primary); }
 
-        /* Footer / Contact */
         footer {
             margin-top: 2rem;
             text-align: center;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
         }
-        footer a { color: var(--text-light); font-size: 1.5rem; transition: color 0.2s; }
+        footer a { color: var(--text-light); font-size: 1.4rem; transition: color 0.2s; }
         footer a:hover { color: var(--primary); }
 
-        @media (max-width: 600px) {
-            .card { padding: 1.5rem; }
-            h1 { font-size: 2rem; }
-        }
+        @media (max-width: 600px) { .card { padding: 1.5rem; } h1 { font-size: 2rem; } }
     </style>
 </head>
 <body>
@@ -150,36 +128,52 @@
                 <p>Cloud Solutions Architect & DevSecOps Engineer</p>
             </header>
 
+            <div class="summary">
+                <p>Tech professional with 5+ years of experience across Software Development and Project Management. Specialized in delivering robust cloud infrastructure and maintaining high-quality code through end-to-end automation.</p>
+            </div>
+
             <section>
-                <h2><i class="fas fa-cloud"></i> Technical Skills</h2>
+                <h2><i class="fas fa-tools"></i> Technical Expertise</h2>
                 <ul class="skills-list">
                     <li>AWS (S3, Lambda, CloudFront)</li>
                     <li>Terraform (IaC)</li>
                     <li>CI/CD (GitHub Actions)</li>
                     <li>Python & Boto3</li>
-                    <li>REST APIs</li>
-                    <li>NoSQL (DynamoDB)</li>
-                    <li>Docker</li>
+                    <li>JavaScript & PHP</li>
+                    <li>NoSQL (DynamoDB) & MySQL</li>
+                    <li>Agile Scrum</li>
                 </ul>
             </section>
 
             <section>
-                <h2><i class="fas fa-certificate"></i> Certifications</h2>
+                <h2><i class="fas fa-briefcase"></i> Highlighted Projects</h2>
+                <div class="experience-item">
+                    <h4>HR Management System Integration</h4>
+                    <p>Led an Agile team to consolidate 17 disparate systems into a single HR platform for MBSP.</p>
+                </div>
+                <div class="experience-item">
+                    <h4>Scam Tracking System</h4>
+                    <p>Managed the end-to-end development of a national scam tracking platform for MCMC.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-award"></i> Professional Certifications</h2>
                 <ul class="skills-list">
                     <li>AWS Certified Solutions Architect – Associate</li>
                     <li>HashiCorp Certified: Terraform Associate</li>
+                    <li>Advanced Microservices Architecture</li>
                 </ul>
             </section>
 
             <section class="blog-section">
                 <h3>The Cloud Resume Challenge</h3>
                 <p>
-                    I built this serverless website to demonstrate full-stack cloud proficiency. 
-                    The architecture includes a <strong>CloudFront OAC</strong> secured S3 bucket, a 
-                    <strong>GitHub Actions</strong> CI/CD pipeline, and a visit counter powered by 
-                    Lambda and DynamoDB.
+                    I codified this entire resume platform using <strong>Terraform</strong> and <strong>GitHub Actions</strong>. 
+                    The architecture features a secure <strong>CloudFront OAC</strong> S3 bucket and a serverless 
+                    visitor counter powered by AWS Lambda and DynamoDB.
                 </p>
-                <a href="__GITHUB_REPO__" class="btn"><i class="fab fa-medium"></i> View the GitHub Repo</a>
+                <a href="__GITHUB_REPO__" class="btn">View Source Code</a>
             </section>
 
             <div class="counter">
@@ -196,7 +190,6 @@
 
     <script>
         const apiURL = '__API_URL__';
-
         async function getCounter() {
             try {
                 const response = await fetch(apiURL);
@@ -204,7 +197,7 @@
                 document.getElementById('visitor-count').innerText = data.count;
             } catch (err) {
                 console.error("Error fetching counter:", err);
-                document.getElementById('visitor-count').innerText = "1"; // Fallback
+                document.getElementById('visitor-count').innerText = "1";
             }
         }
         getCounter();

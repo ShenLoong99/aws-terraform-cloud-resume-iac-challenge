@@ -20,12 +20,12 @@ jobs:
           GITHUB_USER="${{ github.repository_owner }}"
           REPO_URL="${{ github.server_url }}/${{ github.repository }}"
           # Fetch LinkedIn from GitHub Profile
-          LINKEDIN_URL=$(curl -s https://api.github.com/users/$GITHUB_USER/social_accounts | jq -r '.[] | select(.url | contains("linkedin.com")) | .url')
+          LINKEDIN=$(terraform output -raw linkedin)
 
           # Replace placeholders in the template
           sed -i "s|{{REPO_NAME}}|${{ github.repository }}|g" README.template.md
           sed -i "s|{{REPO_URL}}|$REPO_URL|g" README.template.md
-          sed -i "s|{{LINKEDIN_URL}}|$LINKEDIN_URL|g" README.template.md
+          sed -i "s|{{LINKEDIN_URL}}|$LINKEDIN|g" README.template.md
           
           # Overwrite the main README
           mv README.template.md README.md
