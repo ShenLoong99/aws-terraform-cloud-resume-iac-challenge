@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Resume | Infrastructure Engineer</title>
+    <style>
+        /* Modern CSS Variables for easy color changes */
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --card-bg: #ffffff;
+        }
+
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            line-height: 1.7; 
+            max-width: 900px; 
+            margin: auto; 
+            padding: 40px 20px; 
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .card { 
+            background: var(--card-bg); 
+            padding: 3rem; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); 
+        }
+
+        h1 { font-size: 2.5rem; color: #0f172a; margin-bottom: 0.5rem; }
+        h2 { color: var(--primary); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-top: 2rem; }
+        
+        .skills-list { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; }
+        .skills-list li { background: #dbeafe; color: #1e40af; padding: 5px 15px; border-radius: 20px; font-weight: 600; font-size: 0.9rem; }
+
+        .blog-section { 
+            background: #f1f5f9; 
+            padding: 20px; 
+            border-left: 5px solid var(--primary); 
+            margin-top: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .counter { 
+            margin-top: 40px; 
+            text-align: center;
+            font-size: 1.1rem;
+            color: #64748b;
+        }
+
+        #visitor-count { font-weight: bold; color: var(--primary); }
+        
+        a { color: var(--primary); text-decoration: none; font-weight: 600; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <header>
+            <h1>Your Name</h1>
+            <p>Cloud Solutions Architect & Infrastructure Enthusiast</p>
+        </header>
+
+        <section>
+            <h2>Cloud Experience</h2>
+            <ul class="skills-list">
+                <li>Terraform (IaC)</li>
+                <li>AWS CloudFront</li>
+                <li>Amazon S3</li>
+                <li>Lambda & Python</li>
+                <li>DynamoDB</li>
+                <li>API Gateway</li>
+            </ul>
+        </section>
+
+        <section class="blog-section">
+            <h3>Infrastructure Journey</h3>
+            <p>
+                As part of this project, I fully automated my cloud infrastructure using <strong>Terraform</strong>. 
+                I learned how to secure an S3 origin with CloudFront OAC and manage serverless backends as code.
+            </p>
+            <p>
+                📖 <strong>Read my full project write-up:</strong> 
+                <a href="https://your-blog-link.com/cloud-resume-terraform" target="_blank">Building a Serverless Resume with Terraform</a>
+            </p>
+        </section>
+
+        <div class="counter">
+            ✨ This resume has been viewed <span id="visitor-count">...</span> times.
+        </div>
+    </div>
+
+    <script>
+        const apiURL = '${api_url}';
+
+        async function getCounter() {
+            try {
+                let response = await fetch(apiURL);
+                let data = await response.json();
+                document.getElementById('visitor-count').innerText = data.count;
+            } catch (err) {
+                console.error("Error fetching counter:", err);
+                document.getElementById('visitor-count').innerText = "error";
+            }
+        }
+        getCounter();
+    </script>
+</body>
+</html>
