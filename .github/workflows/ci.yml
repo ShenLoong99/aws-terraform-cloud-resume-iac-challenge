@@ -6,7 +6,7 @@ on:
 
 jobs:
   terraform-ci:
-    name: "Lint & Security"
+    name: "Infrastructure CI"
     runs-on: ubuntu-latest
     permissions:
       id-token: write
