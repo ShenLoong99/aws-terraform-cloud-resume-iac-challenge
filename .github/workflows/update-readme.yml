@@ -8,6 +8,7 @@ on:
 jobs:
   update-docs:
     runs-on: ubuntu-latest
+    environment: prod
     # Added permissions to ensure the GITHUB_TOKEN can push the changes back
     permissions:
       contents: write 
