@@ -10,7 +10,7 @@
 
 <div>
    <h1>☁️ AWS Cloud Resume Challenge</h1>
-   <img src="assets/my-resume-website.png" alt="my-resume-website" />
+   <img src="assets/cover-image.jpg" alt="cover-image" />
    <p>A production-grade, serverless resume website built with <strong>Terraform</strong>, <strong>AWS</strong>, and <strong>GitHub Actions</strong>.<br /><a href="#about-the-project"><strong>Explore the docs »</strong></a></p>
 </div>
 <details>
@@ -200,7 +200,10 @@ export AWS_SECRET_ACCESS_KEY=&lt;your-aws-secret-access-key&gt;</pre>
 <h2 id="usage">Usage</h2>
 <p> Once deployed, the project provides two live interfaces: </p>
 <ul>
-   <li><strong>Resume Website:</strong> Accessible via the <code>website_url</code> (CloudFront Domain).</li>
+   <li>
+    <strong>Resume Website:</strong> Accessible via the <code>website_url</code> (CloudFront Domain).<br>
+    <img src="assets/my-resume-website.png" alt="my-resume-website" />
+    </li>
    <li><strong>Visitor API:</strong> Testable via <code>curl</code> using the <code>api_url</code> output.</li>
 </ul>
 
@@ -327,4 +330,4 @@ export AWS_SECRET_ACCESS_KEY=&lt;your-aws-secret-access-key&gt;</pre>
 [license-shield]: https://img.shields.io/github/license/ShenLoong99/aws-terraform-cloud-resume-iac-challenge.svg?style=for-the-badge
 [license-url]: https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/si-kai-tan/
+[linkedin-url]: [33m╷[0m[0m [33m│[0m [0m[1m[33mWarning: [0m[0m[1mNo outputs found[0m [33m│[0m [0m [33m│[0m [0m[0mThe state file either has no outputs defined, or all the defined outputs [33m│[0m [0mare empty. Please define an output in your configuration with the `output` [33m│[0m [0mkeyword and run `terraform refresh` for it to become available. If you are [33m│[0m [0musing interpolation, please verify the interpolated value is not empty. You [33m│[0m [0mcan use the `terraform console` command to assist. [33m╵[0m[0m
