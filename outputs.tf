@@ -32,3 +32,7 @@ output "linkedin" {
   description = "The LinkedIn URL"
   value       = "https://www.linkedin.com/in/si-kai-tan/"
 }
+
+# output "custom_domain_url" {
+#   value = "https://${aws_route53_record.www.name}"
+# }
