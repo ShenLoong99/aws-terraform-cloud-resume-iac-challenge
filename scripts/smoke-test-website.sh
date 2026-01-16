@@ -26,7 +26,7 @@ for i in {1..10}; do
       echo "✅ Website check passed (Status: $SITE_STATUS)"
       exit 0
     else
-      echo "⚠️ Status 200 but expected content not found. (CloudFront may be serving old cache)"
+      echo "SITE_RESPONSE: $SITE_RESPONSE"
     fi
   else
     echo "⏳ Connection failed or status $SITE_STATUS. Retrying in 15s... ($i/10)"

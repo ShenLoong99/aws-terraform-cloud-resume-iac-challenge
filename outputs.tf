@@ -20,7 +20,7 @@ output "cloudfront_dist_id" {
 
 output "website_url" {
   description = "The URL of the CloudFront distribution"
-  value       = "https://${aws_cloudfront_distribution.s3_distribution.domain_name}"
+  value       = aws_cloudfront_distribution.s3_distribution.domain_name
 }
 
 output "aws_region" {
