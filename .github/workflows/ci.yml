@@ -1,51 +1,86 @@
 name: "Infrastructure CI"
+
 on:
   pull_request:
-    paths-ignore:
-      - 'README.md'
-      - 'README.template.md'
-      - 'update-readme.yml'
-      - '.gitignore'
-      - 'assets/**'
-    branches:
-      - main
+    branches: [ main ]
+    paths:
+      - '**.tf'
+      - 'lambda/**'
+      - 'frontend/**'
+      - 'scripts/**'
+      - '.github/workflows/ci.yml'
+  workflow_dispatch:
 
 jobs:
-  terraform-ci:
-    name: "Infrastructure CI"
+  # STEP A: THE BRAIN (Detection)
+  changes:
     runs-on: ubuntu-latest
-    environment: prod
-    permissions:
-      id-token: write
-      contents: write
-      pull-requests: write 
+    outputs:
+      infra: ${{ steps.filter.outputs.infra }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            infra:
+              - '**.tf'
+              - 'lambda/**'
+
+  # STEP B: STATIC ANALYSIS (Format, Validate, Security)
+  # This job runs in parallel with other checks to save time
+  static-analysis:
+    needs: changes
+    if: needs.changes.outputs.infra == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write # Required for upload-sarif@v4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-          terraform_wrapper: true # Required to capture plan output
 
       - name: Terraform Format
-        id: fmt
         run: terraform fmt -check -recursive
 
       - name: Terraform Init
-        run: |
-          terraform init
-          terraform validate
+        run: terraform init -backend=false
 
       - name: Terraform Validate
-        run: |
-          terraform validate
-
-      - name: tfsec Security Scan
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.2.0
+        run: terraform validate
+        
+      # Run the scan and generate the SARIF report file
+      - name: Run tfsec
+        uses: aquasecurity/tfsec-sarif-action@v0.1.4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          sarif_file: tfsec.sarif         
+
+      # Upload that file so GitHub can display it in the PR 'Security' tab
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: tfsec.sarif
+
+  # STEP C: EXECUTION PLAN
+  # This only runs if static analysis passes
+  terraform-plan:
+    needs: [changes, static-analysis]
+    if: needs.changes.outputs.infra == 'true'
+    runs-on: ubuntu-latest
+    environment: prod
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          terraform_wrapper: true
+
+      - name: Terraform Init
+        run: terraform init
 
       - name: Terraform Plan
         id: plan
@@ -65,10 +100,8 @@ jobs:
             ${{ steps.plan.outputs.stdout }}
             \`\`\`
             
-            </details>
-            
-            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
-            
+            </details>`;
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
