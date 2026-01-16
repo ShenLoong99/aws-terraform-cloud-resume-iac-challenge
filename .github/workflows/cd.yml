@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  # STEP 1: Detect what changed to optimize the run
+  # Detect what changed to optimize the run
   changes:
     runs-on: ubuntu-latest
     outputs:
@@ -29,7 +29,7 @@ jobs:
               - 'website-files/**'
               - '.github/workflows/cd.yml'
 
-  # STEP 2: Infrastructure Job (Terraform)
+  # Infrastructure Job (Terraform)
   terraform:
     needs: changes
     # Only run if .tf files or lambda code changed
@@ -52,7 +52,7 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
-  # STEP 3: Deployment & Health Check (Frontend & Testing)
+  # Deployment & Health Check (Frontend & Testing)
   deploy:
     needs: [changes, terraform]
     # Run if the app (frontend) changed OR the infra job finished successfully
