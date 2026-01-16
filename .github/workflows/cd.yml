@@ -5,6 +5,7 @@ on:
     paths:
       - "**.tf"
       - "lambda/**"
+      - "scripts/**"
       - "website-files/**"
       - ".github/workflows/cd.yml"
   workflow_dispatch:
