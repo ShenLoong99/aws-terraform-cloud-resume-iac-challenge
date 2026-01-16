@@ -1,16 +1,64 @@
 name: "Production Deployment"
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
     paths:
-      - "**.tf"              # Any Terraform file
-      - "lambda/**"         # Backend code changes
-      - "website-files/**"  # Frontend UI changes
-      - ".github/workflows/cd.yml" # The workflow itself
+      - "**.tf"
+      - "lambda/**"
+      - "website-files/**"
+      - ".github/workflows/cd.yml"
+  workflow_dispatch:
 
 jobs:
+  # STEP 1: Detect what changed to optimize the run
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      infra: ${{ steps.filter.outputs.infra }}
+      app: ${{ steps.filter.outputs.app }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            infra:
+              - '**.tf'
+              - 'lambda/**'
+            app:
+              - 'website-files/**'
+              - '.github/workflows/cd.yml'
+
+  # STEP 2: Infrastructure Job (Terraform)
+  terraform:
+    needs: changes
+    # Only run if .tf files or lambda code changed
+    if: needs.changes.outputs.infra == 'true'
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          terraform_wrapper: false
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+
+  # STEP 3: Deployment & Health Check (Frontend & Testing)
   deploy:
+    needs: [changes, terraform]
+    # Run if the app (frontend) changed OR the infra job finished successfully
+    if: |
+      always() && 
+      (needs.changes.outputs.app == 'true' || needs.terraform.result == 'success')
     runs-on: ubuntu-latest
     environment: prod
     permissions:
@@ -24,18 +72,13 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-          terraform_wrapper: false # Recommended for cleaner script output
-      
+          terraform_wrapper: false
+
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Apply
-        # With TFC 'Auto-apply' enabled in the UI, this triggers the deploy immediately
-        run: terraform apply -auto-approve
-
       - name: Set Environment Variables
         run: |
-          # Pull everything from Terraform Outputs in one go
           echo "API_URL=$(terraform output -raw api_url)" >> $GITHUB_ENV
           echo "SITE_URL=$(terraform output -raw website_url)" >> $GITHUB_ENV
           echo "BUCKET_NAME=$(terraform output -raw website_bucket_id)" >> $GITHUB_ENV
@@ -44,18 +87,13 @@ jobs:
 
       - name: Inject into HTML
         run: |
-          # Use the environment variables saved above
-          GIT_REPO="${{ github.server_url }}/${{ github.repository }}"
-          GIT_PROF="${{ github.server_url }}/${{ github.actor }}"
           GITHUB_USER="${{ github.repository_owner }}"
           LINKEDIN=$(curl -s https://api.github.com/users/$GITHUB_USER/social_accounts | jq -r '.[] | select(.url | contains("linkedin.com")) | .url')
-          EMAIL="${{ secrets.EMAIL_ADDRESS }}"
-
+          
           sed -i "s|__API_URL__|$API_URL|g" ./website-files/index.html
-          sed -i "s|__GITHUB_REPO__|$GIT_REPO|g" ./website-files/index.html
-          sed -i "s|__GITHUB_PROFILE__|$GIT_PROF|g" ./website-files/index.html
+          sed -i "s|__GITHUB_REPO__|${{ github.server_url }}/${{ github.repository }}|g" ./website-files/index.html
           sed -i "s|__LINKEDIN_URL__|$LINKEDIN|g" ./website-files/index.html
-          sed -i "s|__EMAIL__|$EMAIL|g" ./website-files/index.html
+          sed -i "s|__EMAIL__|${{ secrets.EMAIL_ADDRESS }}|g" ./website-files/index.html
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -63,34 +101,21 @@ jobs:
           role-to-assume: arn:aws:iam::871308866502:role/GitHubActionRole
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Deploy to S3
-        run: aws s3 sync ./website-files s3://${{ env.BUCKET_NAME }} --delete
-
-      - name: Invalidate CloudFront
-        run: aws cloudfront create-invalidation --distribution-id ${{ env.DIST_ID }} --paths "/*"
+      - name: Deploy and Invalidate
+        run: |
+          aws s3 sync ./website-files s3://${{ env.BUCKET_NAME }} --delete
+          aws cloudfront create-invalidation --distribution-id ${{ env.DIST_ID }} --paths "/*"
 
       - name: Smoke Test Website
         run: |
-          STATUS=$(curl -o /dev/null -s -w "%{http_code}" ${{ env.SITE_URL }})
-          if [ $STATUS -ne 200 ]; then
-            echo "❌ Website is down! Status: $STATUS"
-            exit 1
-          fi
-          echo "✅ Website is live at ${{ env.SITE_URL }}"
+          chmod +x ./scripts/smoke-test-website.sh
+          ./scripts/smoke-test-website.sh
+        env:
+          SITE_URL: ${{ env.SITE_URL }}
 
       - name: Test Visitor Counter API
         run: |
-          # 1. Fetch current count
-          COUNT1=$(curl -s "${{ env.API_URL }}" | jq '.count')
-          
-          # 2. Wait a second and fetch again
-          sleep 1
-          COUNT2=$(curl -s "${{ env.API_URL }}" | jq '.count')
-          
-          # 3. Verify the count increased
-          if [ "$COUNT2" -gt "$COUNT1" ]; then
-            echo "✅ Counter is working: $COUNT1 -> $COUNT2"
-          else
-            echo "❌ Counter failed to increment!"
-            exit 1
-          fi
+          chmod +x ./scripts/test-visitor-counter.sh
+          ./scripts/test-visitor-counter.sh
+        env:
+          API_URL: ${{ env.API_URL }}
