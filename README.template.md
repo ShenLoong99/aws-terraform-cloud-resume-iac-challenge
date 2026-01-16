@@ -6,7 +6,9 @@
 [![Issues][issues-shield]][issues-url]
 [![Unlicense License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+[![Infrastructure CI][ci-shield]][ci-url]
+[![Production Deployment][cd-shield]][cd-url]
+[![Update Documentation][docs-shield]][docs-url]
 
 <div>
    <h1>☁️ AWS Cloud Resume Challenge</h1>
@@ -319,15 +321,29 @@ export AWS_SECRET_ACCESS_KEY=&lt;your-aws-secret-access-key&gt;</pre>
 </div>
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
 
-[contributors-shield]: https://img.shields.io/github/contributors/{{REPO_NAME}}.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/{{GITHUB_USER}}/{{REPO_NAME}}.svg?style=for-the-badge
 [contributors-url]: {{REPO_URL}}/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/{{REPO_NAME}}.svg?style=for-the-badge
+
+[forks-shield]: https://img.shields.io/github/forks/{{GITHUB_USER}}/{{REPO_NAME}}.svg?style=for-the-badge
 [forks-url]: {{REPO_URL}}/network/members
-[stars-shield]: https://img.shields.io/github/stars/{{REPO_NAME}}.svg?style=for-the-badge
+
+[stars-shield]: https://img.shields.io/github/stars/{{GITHUB_USER}}/{{REPO_NAME}}.svg?style=for-the-badge
 [stars-url]: {{REPO_URL}}/stargazers
-[issues-shield]: https://img.shields.io/github/issues/{{REPO_NAME}}.svg?style=for-the-badge
+
+[issues-shield]: https://img.shields.io/github/issues/{{GITHUB_USER}}/{{REPO_NAME}}.svg?style=for-the-badge
 [issues-url]: {{REPO_URL}}/issues
-[license-shield]: https://img.shields.io/github/license/{{REPO_NAME}}.svg?style=for-the-badge
+
+[license-shield]: https://img.shields.io/github/license/{{GITHUB_USER}}/{{REPO_NAME}}.svg?style=for-the-badge
 [license-url]: {{REPO_URL}}/blob/master/LICENSE.txt
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: {{LINKEDIN_URL}}
+
+[ci-shield]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/ci.yml/badge.svg
+[ci-url]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/ci.yml
+
+[cd-shield]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/cd.yml/badge.svg
+[cd-url]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/cd.yml
+
+[docs-shield]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/update-readme.yml/badge.svg
+[docs-url]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/update-readme.yml
