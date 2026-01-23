@@ -121,8 +121,22 @@
 ├── s3.tf                    # Static asset storage
 ├── terraform.tfstate        # Local state file (if not using cloud)
 ├── terraform.tfstate.backup # Previous state snapshot
+├── .pre-commit-config.yaml  # Local git-hook orchestration
+├── .tflint.hcl              # TFLint AWS ruleset configuration
+├── .checkov.yml             # Checkov scan ignore list
 └── variables.tf             # Input parameters and configurations
 </pre>
+<div align="right"><a href="#readme-top">↑ Back to Top</a></div>
+
+<h2 id="technical">Technical Reference</h2>
+This section is automatically updated with the latest infrastructure details.
+<details>
+<summary><b>Detailed Infrastructure Specifications</b></summary>
+
+<!-- BEGIN_TF_DOCS -->
+{{ .Content }}
+<!-- END_TF_DOCS -->
+</details>
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
 
 <h2 id="getting-started">Getting Started</h2>
@@ -134,9 +148,10 @@
    <li><strong>Set your AWS Region:</strong> Set to whatever <code>aws_region</code> you want in <code>variables.tf</code>.</li>
 </ul>
 
-<h3>Terraform Cloud</h3>
+<h3>Terraform Cloud State Management</h3>
 <ol>
-   <li>Create a new <strong>Workspace</strong> in Terraform Cloud with CLI workflow.</li>
+   <li>Create a new <strong>Workspace</strong> with github version control workflow in Terraform Cloud.</li>
+   <li>In the Variables tab, add the following <strong>Terraform Variables:</strong>
    </li>
    <li>
     Add the following <strong>Environment Variables</strong> (AWS Credentials):
@@ -145,81 +160,96 @@
       <li><code>AWS_SECRET_ACCESS_KEY</code></li>
    </ul>
    </li>
-   <li>
-      Configure the <code>backend</code> block:
-      <pre>cloud {
-    organization = &lt;your-tfc-organization&gt;
-    workspaces {
-        name = &lt;your-tfc-workspace&gt;
-    }
+    <li>
+      Run the command ni Terraform CLI:
+      <pre>terraform login</pre>
+    </li>
+    <li>Create a token and follow the steps in browser to complete the Terraform Cloud Connection.</li>
+    <li>
+      Add the <code>backend</code> block in <code>terraform</code> code block</code>:
+    <pre>backend "remote" {
+  hostname     = "app.terraform.io"
+  organization = &lt;your-organization-name&gt;
+  workspaces {
+    name = &lt;your-workspace-name&gt;
+  }
 }</pre>
    </li>
-   <li>
-    Add the following <strong>Environment Variables</strong> (AWS Credentials):
-    <pre>git bash command:
-export AWS_ACCESS_KEY_ID=&lt;your-aws-access-key-id&gt;
-export AWS_SECRET_ACCESS_KEY=&lt;your-aws-secret-access-key&gt;</pre>
-   </li>
+    <li>
+      Run the command in Terraform CLI to migrate the state into Terraform Cloud:
+      <pre>terraform init -migrate-state</pre>
+    </li>
 </ol>
 
-<h3 id="cicd-setup">🚀 CI/CD & Deployment Process</h3>
-<p>This project uses a "Pull Request-led" deployment strategy. Infrastructure changes and frontend updates are strictly managed through GitHub Actions to ensure code quality and stability.</p>
-<h3>1. Initial Configuration (One-Time Setup)</h3>
-<p>Before the pipeline can run, you must configure the following secrets in your GitHub Repository (<strong>Settings > Secrets and variables > Actions</strong>):</p>
-<table>
-   <thead>
-      <tr>
-         <th>Secret Name</th>
-         <th>Description</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td><code>TF_API_TOKEN</code></td>
-         <td>Your Terraform Cloud Team API token. Used to authenticate the runner to trigger remote plans/applies.</td>
-      </tr>
-      <tr>
-         <td><code>EMAIL_ADDRESS</code></td>
-         <td>The email used for the resume contact section and AWS resource tagging.</td>
-      </tr>
-   </tbody>
-</table>
-
-<h3>Development & Push Commit</h3>
-<p>Work on your local machine. When you push a commit to a feature branch:</p>
-<ul>
-   <li>
-    <strong>Continuous Integration (CI):</strong> The <code>ci.yml</code> workflow triggers.<br>
-    <img src="assets/ci-githubactions-logs.png" alt="ci-githubactions-logs" />
-    </li>
-   <li><strong>Validation:</strong> It runs <code>terraform fmt -check</code> and <code>terraform validate</code> to ensure your IaC is syntactically correct.</li>
-   <li><strong>Linting:</strong> Your Python Lambda code in <code>/lambda</code> is checked for errors.</li>
-</ul>
-
-<h3>Pull Request & Review</h3>
-<p>When you open a Pull Request (PR) to merge into the <code>main</code> branch:</p>
-<ul>
-   <li>A <strong>Speculative Plan</strong> is triggered in Terraform Cloud.</li>
-   <li>You can review exactly what AWS resources will be added, changed, or destroyed in the PR comments before merging.</li>
-</ul>
-
-<h3>Merge to Main & Deployment</h3>
-<p>Once the PR is merged into <code>main</code>, the <strong>Production Deployment</strong> workflow (<code>cd.yml</code>) takes over:</p>
-<img src="assets/cd-githubactions-logs.png" alt="cd-githubactions-logs" />
+<h3>Installation & Deployment</h3>
 <ol>
-   <li><strong>Terraform Apply:</strong> Automatically provisions/updates S3, CloudFront, Lambda, and DynamoDB.</li>
-   <li><strong>Dynamic Injection:</strong> The workflow pulls <code>api_url</code> and <code>linkedin</code> from Terraform outputs and uses <code>sed</code> to patch your <code>index.html</code>.</li>
-   <li>
-    <strong>S3 Sync:</strong> Uploads the patched frontend files to your S3 bucket.<br>
-    <img src="assets/s3-bucket-host.png" alt="s3-bucket-host" />
+    <li>
+        <strong>Clone the Repository:</strong>
+        <pre>git clone https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}.git</pre>
     </li>
-   <li><strong>CloudFront Invalidation:</strong> Clears the edge cache so your new resume is visible globally immediately.</li>
-   <li>
-    <strong>Smoke Testing:</strong> Pings the <code>website_url</code> and tests the Lambda API to verify the visitor counter <br>
-    <img src="assets/dynamodb-visitor-count.png" alt="dynamodb-visitor-count" />
+    <li>
+        <strong>Provision Infrastructure:</strong><br>
+        <strong>Terraform Cloud</strong> → <strong>Initialize & Apply:</strong> Push your code to GitHub. Terraform Cloud will automatically detect the change, run a <code>plan</code>, and wait for your approval.
+    </li>
+    <li>
+        <strong>Observe workflow:</strong><br>
+        <strong>GitHub (GitOps)</strong> → <strong>Github actions:</strong> Observe the process/workflow of CI/CD in the actions tab in GitHub.
     </li>
 </ol>
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
+
+<h2 id="gitops">GitOps & CI/CD Workflow</h2>
+<p>This project uses a fully automated GitOps pipeline to ensure code quality and deployment reliability. The <strong>Pre-commit</strong> framework implements a "Shift-Left" strategy, ensuring that code is formatted, documented, and secure before it ever leaves your machine.</p>
+
+<h3>Workflow Files</h3>
+<ol>
+  <li>
+    <strong>Pre-commit</strong>
+    <ul>
+      <li><strong>Tool:</strong> Executes <code>terraform fmt</code>, <code>terraform validate</code>, <code>TFLint</code>, <code>terraform_docs</code> and <code>checkov</code> to ensure the code is clean.</li>
+      <li><strong>Trigger:</strong> Runs on every <strong>git commit</strong>.</li>
+      <li>
+        <strong>Outcome:</strong> If any check fails, the commit is blocked. You fix the error, re-add the file, and commit again.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <strong>Continuous Integration (PR)</strong>
+    <ul>
+      <li><strong>Tool:</strong> Executes <code>terraform fmt -check</code>, <code>terraform validate</code> and <code>checkov</code>, then do <code>plan</code> and cost estimation and print it on PR.</li>
+      <li><strong>Trigger:</strong> Runs on every <strong>Pull Request</strong>.</li>
+      <li>
+        <strong>Outcome:</strong> This acts as the "Gatekeeper" before code is merged to <code>main</code>.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <strong>Continuous Delivery (Deployment)</strong>
+    <ul>
+      <li><strong>Tool:</strong> Terraform Cloud + GitHub Actions OIDC.</li>
+      <li><strong>Trigger:</strong> Merges to the <code>main</code> branch.</li>
+      <li>
+        <strong>Outcome:</strong> The pipeline verifies the infrastructure state and runs a post-deployment health check with(<code>health-check.sh</code> & <code>smoke-test-website.sh</code>).
+      </li>
+    </ul>
+  </li>
+  <li>
+    <strong>Dynamically update readme documentation</strong>
+    <ul>
+      <li><strong>Tool:</strong> Terraform Cloud + GitHub Actions.</li>
+      <li><strong>Trigger:</strong> Merges to the <code>main</code> branch.</li>
+      <li>
+        <strong>Outcome:</strong> The pipeline verifies the infrastructure state from Terraform Cloud, retrieve outputs from Terraform Cloud and update the readme documentation file dynamically.
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3>Prerequisites for GitOps</h3>
+<ul>
+  <li><strong>Repository Secret <code>TF_API_TOKEN</code>:</strong> Required for GitHub to communicate with Terraform Cloud.</li>
+  <li><strong>Trigger:</strong> A GitHub Actions OIDC role (<code>GitHubActionRole</code>) allows the runner to verify AWS resources without long-lived keys.</li>
+</ul>
 
 <h2 id="usage">Usage</h2>
 <p> Once deployed, the project provides two live interfaces: </p>
@@ -241,7 +271,6 @@ export AWS_SECRET_ACCESS_KEY=&lt;your-aws-secret-access-key&gt;</pre>
   <li><strong>Metrics Tracking:</strong> Monitors invocation counts, error rates, and execution duration (latency).</li>
   <li><strong>Cost Optimization:</strong> Log retention is set to <strong>7 days</strong> via Terraform to minimize storage costs while maintaining sufficient history for troubleshooting.</li>
 </ul>
-
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
 
 <h2 id="roadmap">Roadmap</h2>
