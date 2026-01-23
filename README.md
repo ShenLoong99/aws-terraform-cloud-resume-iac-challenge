@@ -146,41 +146,26 @@ This section is automatically updated with the latest infrastructure details.
 
 ## Providers
 
-| Name                                                         | Version |
-| ------------------------------------------------------------ | ------- |
-| <a name="provider_archive"></a> [archive](#provider_archive) | 2.7.1   |
-| <a name="provider_aws"></a> [aws](#provider_aws)             | 5.100.0 |
-| <a name="provider_random"></a> [random](#provider_random)    | 3.8.0   |
+| Name                                             | Version |
+| ------------------------------------------------ | ------- |
+| <a name="provider_aws"></a> [aws](#provider_aws) | 5.100.0 |
 
 ## Modules
 
-No modules.
+| Name                                                        | Source             | Version |
+| ----------------------------------------------------------- | ------------------ | ------- |
+| <a name="module_api"></a> [api](#module_api)                | ./modules/api      | n/a     |
+| <a name="module_cdn"></a> [cdn](#module_cdn)                | ./modules/cdn      | n/a     |
+| <a name="module_database"></a> [database](#module_database) | ./modules/database | n/a     |
+| <a name="module_iam"></a> [iam](#module_iam)                | ./modules/iam      | n/a     |
+| <a name="module_lambda"></a> [lambda](#module_lambda)       | ./modules/lambda   | n/a     |
+| <a name="module_storage"></a> [storage](#module_storage)    | ./modules/storage  | n/a     |
 
 ## Resources
 
-| Name                                                                                                                                                                                               | Type        |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [aws_apigatewayv2_api.resume_api_gw](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_api)                                                                 | resource    |
-| [aws_apigatewayv2_integration.lambda_integration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_integration)                                            | resource    |
-| [aws_apigatewayv2_route.api_route](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_route)                                                                 | resource    |
-| [aws_apigatewayv2_stage.api_stage](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_stage)                                                                 | resource    |
-| [aws_cloudfront_distribution.s3_distribution](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution)                                                 | resource    |
-| [aws_cloudfront_origin_access_control.resume_oac](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_origin_access_control)                                    | resource    |
-| [aws_cloudwatch_log_group.lambda_log_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group)                                                      | resource    |
-| [aws_dynamodb_table.visitor_count](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table)                                                                     | resource    |
-| [aws_iam_role.lambda_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role)                                                                                   | resource    |
-| [aws_iam_role_policy.lambda_db_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy)                                                                | resource    |
-| [aws_iam_role_policy_attachment.lambda_logs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment)                                               | resource    |
-| [aws_lambda_function.resume_api](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function)                                                                      | resource    |
-| [aws_lambda_permission.api_gw_lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission)                                                               | resource    |
-| [aws_s3_bucket.resume_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket)                                                                               | resource    |
-| [aws_s3_bucket_lifecycle_configuration.resume_lifecycle](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_lifecycle_configuration)                            | resource    |
-| [aws_s3_bucket_policy.allow_access_from_cloudfront](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy)                                                  | resource    |
-| [aws_s3_bucket_public_access_block.resume_block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block)                                        | resource    |
-| [aws_s3_bucket_server_side_encryption_configuration.resume_encryption](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_server_side_encryption_configuration) | resource    |
-| [aws_s3_bucket_versioning.resume_versioning](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning)                                                     | resource    |
-| [random_string.bucket_suffix](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string)                                                                               | resource    |
-| [archive_file.lambda_zip](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file)                                                                                 | data source |
+| Name                                                                                                                                          | Type     |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| [aws_cloudwatch_log_group.lambda_log_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
 
 ## Inputs
 
