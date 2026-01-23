@@ -25,10 +25,22 @@ resource "aws_s3_bucket_lifecycle_configuration" "resume_lifecycle" {
   rule {
     id     = "archive-old-versions"
     status = "Enabled"
+
     filter {}
-    noncurrent_version_transition {
-      noncurrent_days = 30
-      storage_class   = "GLACIER"
+
+    # Example 1: Permanently delete objects after 30 days
+    expiration {
+      days = 30
+    }
+
+    # Abort failed uploads after 7 days to save money
+    abort_incomplete_multipart_upload {
+      days_after_initiation = 7
+    }
+
+    # Example 2: If you enabled versioning, delete non-current versions after 7 days
+    noncurrent_version_expiration {
+      noncurrent_days = 7
     }
   }
 }
