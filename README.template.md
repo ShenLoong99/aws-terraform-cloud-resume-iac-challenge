@@ -1,11 +1,22 @@
 <a id="readme-top"></a>
 
+<div align="center">
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![Unlicense License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+
+   <h1>☁️ AWS Cloud Resume Challenge</h1>
+   <img src="assets/cover-image.jpg" alt="cover-image" />
+   <p>A production-grade, serverless resume website built with <strong>Terraform</strong>, <strong>AWS</strong>, and <strong>GitHub Actions</strong></p>
+
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
 <br>
 
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)<br>
@@ -13,10 +24,15 @@
 [![Production Deployment][cd-shield]][cd-url]
 [![Update Documentation][docs-shield]][docs-url]
 
-<div>
-   <h1>☁️ AWS Cloud Resume Challenge</h1>
-   <img src="assets/cover-image.jpg" alt="cover-image" />
-   <p>A production-grade, serverless resume website built with <strong>Terraform</strong>, <strong>AWS</strong>, and <strong>GitHub Actions</strong>.<br /><a href="#about-the-project"><strong>Explore the docs »</strong></a></p>
+<br>
+
+![Last Commit](https://img.shields.io/github/last-commit/ShenLoong99/aws-terraform-cloud-fun-facts-generator?style=for-the-badge)
+![Repo Size](https://img.shields.io/github/repo-size/ShenLoong99/aws-terraform-cloud-fun-facts-generator?style=for-the-badge)
+![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?style=for-the-badge&logo=pre-commit&logoColor=white)
+[![Checkov Security](https://img.shields.io/badge/Checkov-Secured-brightgreen?style=for-the-badge&logo=checkov&logoColor=white)](https://github.com/ShenLoong99/aws-terraform-cloud-fun-facts-generator/actions/workflows/ci.yml)
+
+<a href="#about-the-project"><strong>Explore the docs »</strong></a>
+
 </div>
 <details>
    <summary>Table of Contents</summary>
@@ -26,11 +42,14 @@
       <li><a href="#use-cases">Use Cases</a></li>
       <li><a href="#architecture">Architecture</a></li>
       <li><a href="#file-structure">File Structure</a></li>
+      <li><a href="#technical">Technical Reference</a></li>
       <li><a href="#getting-started">Getting Started</a></li>
+      <li><a href="#gitops">GitOps & CI/CD Workflow</a></li>
       <li><a href="#usage">Usage</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#challenges-faced">Challenges</a></li>
       <li><a href="#cost-optimization">Cost Optimization</a></li>
+      <li><a href="#special-thanks">Special Thanks</a></li>
    </ol>
 </details>
 
