@@ -16,10 +16,11 @@ repos:
       - id: terraform_tflint    # Catches AWS provider-specific errors
         args:
         - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
-        - --args=--recursive  # If you want tflint to run recursively
+        - --args=--recursive
       - id: terraform_docs      # Automates Technical Reference updates
         args:
-          - --args=--prefix=README.template.md
+          - --args=--config=.terraform-docs.yml
+        pass_filenames: false
 
   - repo: https://github.com/bridgecrewio/checkov
     rev: 3.2.497 # It is best practice to use a specific stable version
