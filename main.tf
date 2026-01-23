@@ -1,8 +1,64 @@
-# Cloudwatch Logging Permissions for Lambda
-# This creates a "connection" between your Lambda's Role and the Logging Policy
-resource "aws_iam_role_policy_attachment" "lambda_logs" {
-  role       = aws_iam_role.lambda_role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+# Local variables
+locals {
+  common_tags = {
+    Project     = "CloudResumeChallenge"
+    Environment = "Production"
+    ManagedBy   = "Terraform"
+    Owner       = "ShenLoong"
+  }
+}
+
+# Module for S3
+module "storage" {
+  source       = "./modules/storage"
+  project_name = var.project_name
+  aws_region   = var.aws_region
+  default_tags = local.common_tags
+}
+
+# Module for Cloudfront
+module "cdn" {
+  source       = "./modules/cdn"
+  domain_name  = module.storage.domain_name
+  aws_region   = var.aws_region
+  default_tags = local.common_tags
+}
+
+# Module for IAM (Permissions, roles, policies)
+module "iam" {
+  source            = "./modules/iam"
+  function_name     = module.lambda.function_name
+  execution_arn     = module.api.execution_arn
+  website_bucket_id = module.storage.website_bucket_id
+  s3_arn            = module.storage.s3_arn
+  cdn_arn           = module.cdn.cdn_arn
+  db_arn            = module.database.db_arn
+  aws_region        = var.aws_region
+  default_tags      = local.common_tags
+}
+
+# Module for DynamoDB
+module "database" {
+  source       = "./modules/database"
+  aws_region   = var.aws_region
+  default_tags = local.common_tags
+}
+
+# Module for API Gateway
+module "api" {
+  source       = "./modules/api"
+  lambda_arn   = module.lambda.lambda_arn
+  aws_region   = var.aws_region
+  default_tags = local.common_tags
+}
+
+# Module for Lambda
+module "lambda" {
+  source       = "./modules/lambda"
+  lambda_arn   = module.iam.lambda_arn
+  lambda_logs  = module.iam.lambda_logs
+  aws_region   = var.aws_region
+  default_tags = local.common_tags
 }
 
 # (Optional but Recommended) Create the actual Log Group in CloudWatch
