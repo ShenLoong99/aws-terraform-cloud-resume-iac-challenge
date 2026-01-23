@@ -254,7 +254,7 @@ No modules.
     </li>
     <li>
         <strong>Provision Infrastructure:</strong><br>
-        <strong>Terraform Cloud</strong> → <strong>Initialize & Apply:</strong> Push your code to GitHub. Terraform Cloud will automatically detect the change, run a <code>plan</code>, and wait for your approval.
+        <strong>Terraform Cloud</strong> → <strong>Initialize & Apply:</strong> Push your code to GitHub. Terraform Cloud will automatically detect the change, run a <code>plan</code>, and apply automatically (TFC CLI workflow).
     </li>
     <li>
         <strong>Observe workflow:</strong><br>
@@ -301,7 +301,7 @@ No modules.
   <li>
     <strong>Dynamically update readme documentation</strong>
     <ul>
-      <li><strong>Tool:</strong> Terraform Cloud + GitHub Actions.</li>
+      <li><strong>Tool:</strong> <code>terraform_docs</code> + GitHub Actions.</li>
       <li><strong>Trigger:</strong> Merges to the <code>main</code> branch.</li>
       <li>
         <strong>Outcome:</strong> The pipeline verifies the infrastructure state from Terraform Cloud, retrieve outputs from Terraform Cloud and update the readme documentation file dynamically.
