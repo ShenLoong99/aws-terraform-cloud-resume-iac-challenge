@@ -70,7 +70,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "resume_encryption
 #     email_address      = "tansikai554@gmail.com"
 #   })
 
-#   # Forces an update if content changes 
+#   # Forces an update if content changes
 #   etag = md5(templatefile("${path.module}/website-files/index.html", {
 #     api_url            = "${aws_apigatewayv2_api.resume_api_gw.api_endpoint}/getcount"
 #     github_repo_url    = "https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge"

@@ -15,7 +15,7 @@ def handler(event, context):
         ExpressionAttributeValues={':inc': 1},
         ReturnValues="UPDATED_NEW"
     )
-    
+
     views = response['Attributes']['visits']
 
     # 2. Return the response for your website

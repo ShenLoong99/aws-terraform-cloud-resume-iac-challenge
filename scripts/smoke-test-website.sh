@@ -21,7 +21,7 @@ for i in {1..10}; do
   # Fetch status and body
   # -s: Silent, -L: Follow redirects, --connect-timeout: prevent CI hangs
   SITE_RESPONSE=$(curl -s -L --connect-timeout 5 -w "%{http_code}" "$SITE_URL" -o /tmp/site_output.html)
-  
+
   # Extract the last 3 digits (HTTP status code)
   SITE_STATUS="${SITE_RESPONSE: -3}"
 
