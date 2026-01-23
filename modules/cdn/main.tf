@@ -9,7 +9,7 @@ resource "aws_cloudfront_origin_access_control" "resume_oac" {
 # Create the CloudFront Distribution
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
-    domain_name              = aws_s3_bucket.resume_bucket.bucket_regional_domain_name
+    domain_name              = var.domain_name
     origin_id                = "S3Origin"
     origin_access_control_id = aws_cloudfront_origin_access_control.resume_oac.id
   }
@@ -40,21 +40,4 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     # minimum_protocol_version = "TLSv1.2_2021"
     cloudfront_default_certificate = true
   }
-}
-
-# SECURITY: Allow ONLY CloudFront to read from S3
-resource "aws_s3_bucket_policy" "allow_access_from_cloudfront" {
-  bucket = aws_s3_bucket.resume_bucket.id
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [{
-      Action    = "s3:GetObject"
-      Effect    = "Allow"
-      Resource  = "${aws_s3_bucket.resume_bucket.arn}/*"
-      Principal = { Service = "cloudfront.amazonaws.com" }
-      Condition = {
-        StringEquals = { "AWS:SourceArn" = aws_cloudfront_distribution.s3_distribution.arn }
-      }
-    }]
-  })
 }

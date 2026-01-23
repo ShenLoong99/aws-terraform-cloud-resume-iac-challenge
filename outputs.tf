@@ -1,26 +1,26 @@
 output "lambda_arn" {
   description = "The ARN of the Lambda function"
-  value       = aws_lambda_function.resume_api.arn
+  value       = module.lambda.lambda_arn
 }
 
 output "api_url" {
   description = "The URL of the API Gateway"
-  value       = "${aws_apigatewayv2_api.resume_api_gw.api_endpoint}/getcount"
+  value       = module.api.api_url
 }
 
 output "website_bucket_id" {
   description = "The name of the S3 bucket"
-  value       = aws_s3_bucket.resume_bucket.id
+  value       = module.storage.website_bucket_id
 }
 
 output "cloudfront_dist_id" {
   description = "The ID of the CloudFront distribution"
-  value       = aws_cloudfront_distribution.s3_distribution.id
+  value       = module.cdn.cloudfront_dist_id
 }
 
 output "website_url" {
   description = "The URL of the CloudFront distribution"
-  value       = aws_cloudfront_distribution.s3_distribution.domain_name
+  value       = module.cdn.website_url
 }
 
 output "aws_region" {
