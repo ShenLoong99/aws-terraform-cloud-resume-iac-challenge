@@ -92,7 +92,7 @@
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
 
 <h2 id="file-structure">File Structure</h2>
-<pre>.
+<pre>aws-terraform-cloud-resume-iac-challenge
 ├── .github/
 │   └── workflows/            # CI/CD Pipeline Definitions
 │       ├── cd.yml            # Continuous Deployment
@@ -105,8 +105,8 @@
 │   ├── cdn/                  # CloudFront CDN with OAC
 │   ├── database/             # DynamoDB Table definitions
 │   ├── iam/                  # Least-privilege Roles & Policies
-│   ├── storage/              # Lambda Compute & Trigger setup
-│   └── lambda/               # S3 Buckets for static hosting
+│   ├── storage/              # S3 Buckets for static hosting
+│   └── lambda/               # Lambda Compute & Trigger setup
 │       └── lambda/           # Serverless backend logic
 │           ├── func.py       # Lambda Python source code
 │           └── func.zip      # Compiled deployment artifact
@@ -144,55 +144,7 @@ This section is automatically updated with the latest infrastructure details.
 
 <!-- BEGIN_TF_DOCS -->
 
-## Requirements
-
-| Name                                                                     | Version  |
-| ------------------------------------------------------------------------ | -------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.5.0 |
-| <a name="requirement_archive"></a> [archive](#requirement_archive)       | ~> 2.0   |
-| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | ~> 5.0   |
-| <a name="requirement_random"></a> [random](#requirement_random)          | ~> 3.0   |
-
-## Providers
-
-| Name                                             | Version |
-| ------------------------------------------------ | ------- |
-| <a name="provider_aws"></a> [aws](#provider_aws) | 5.100.0 |
-
-## Modules
-
-| Name                                                        | Source             | Version |
-| ----------------------------------------------------------- | ------------------ | ------- |
-| <a name="module_api"></a> [api](#module_api)                | ./modules/api      | n/a     |
-| <a name="module_cdn"></a> [cdn](#module_cdn)                | ./modules/cdn      | n/a     |
-| <a name="module_database"></a> [database](#module_database) | ./modules/database | n/a     |
-| <a name="module_iam"></a> [iam](#module_iam)                | ./modules/iam      | n/a     |
-| <a name="module_lambda"></a> [lambda](#module_lambda)       | ./modules/lambda   | n/a     |
-| <a name="module_storage"></a> [storage](#module_storage)    | ./modules/storage  | n/a     |
-
-## Resources
-
-| Name                                                                                                                                          | Type     |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| [aws_cloudwatch_log_group.lambda_log_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
-
-## Inputs
-
-| Name                                                                  | Description         | Type     | Default            | Required |
-| --------------------------------------------------------------------- | ------------------- | -------- | ------------------ | :------: |
-| <a name="input_aws_region"></a> [aws_region](#input_aws_region)       | AWS region          | `string` | `"ap-southeast-1"` |    no    |
-| <a name="input_project_name"></a> [project_name](#input_project_name) | Project name prefix | `string` | `"cloud-resume"`   |    no    |
-
-## Outputs
-
-| Name                                                                                      | Description                                 |
-| ----------------------------------------------------------------------------------------- | ------------------------------------------- |
-| <a name="output_api_url"></a> [api_url](#output_api_url)                                  | The URL of the API Gateway                  |
-| <a name="output_aws_region"></a> [aws_region](#output_aws_region)                         | The AWS region where resources are deployed |
-| <a name="output_cloudfront_dist_id"></a> [cloudfront_dist_id](#output_cloudfront_dist_id) | The ID of the CloudFront distribution       |
-| <a name="output_lambda_arn"></a> [lambda_arn](#output_lambda_arn)                         | The ARN of the Lambda function              |
-| <a name="output_website_bucket_id"></a> [website_bucket_id](#output_website_bucket_id)    | The name of the S3 bucket                   |
-| <a name="output_website_url"></a> [website_url](#output_website_url)                      | The URL of the CloudFront distribution      |
+{{ .Content }}
 
 <!-- END_TF_DOCS -->
 </details>
