@@ -94,37 +94,46 @@
 <h2 id="file-structure">File Structure</h2>
 <pre>.
 ├── .github/
-│   └── workflows/           # CI/CD Pipeline Definitions
-│       ├── cd.yml           # Continuous Deployment
-│       ├── ci.yml           # Continuous Integration
+│   └── workflows/            # CI/CD Pipeline Definitions
+│       ├── cd.yml            # Continuous Deployment
+│       ├── ci.yml            # Continuous Integration
 │       └── update-readme.yml # Automated README Sync
-├── .terraform/              # Local Terraform managed files
-├── assets/                  # Documentation images and media
-├── lambda/                  # Serverless backend logic
-│   ├── func.py              # Lambda Python source code
-│   └── func.zip             # Compiled deployment artifact
-├── website-files/           # Frontend static assets
-│   └── index.html           # Resume UI
-├── .gitignore               # Excluded files from Git
-├── .terraform.lock.hcl      # Provider lock file
-├── acm.tf                   # SSL/TLS Certificate configuration
-├── api_gateway.tf           # REST API endpoint configuration
-├── cloudfront.tf            # CDN distribution settings
-├── database.tf              # DynamoDB table configuration
-├── lambda.tf                # Lambda compute resource settings
-├── main.tf                  # Core infrastructure definitions
-├── outputs.tf               # Resource endpoints and IDs
-├── providers.tf             # AWS and Terraform backend configuration
-├── README.md                # Generated documentation
-├── README.template.md       # Documentation source template
-├── route53.tf               # DNS management
-├── s3.tf                    # Static asset storage
-├── terraform.tfstate        # Local state file (if not using cloud)
-├── terraform.tfstate.backup # Previous state snapshot
-├── .pre-commit-config.yaml  # Local git-hook orchestration
-├── .tflint.hcl              # TFLint AWS ruleset configuration
-├── .checkov.yml             # Checkov scan ignore list
-└── variables.tf             # Input parameters and configurations
+├── .terraform/               # Local Terraform managed files
+├── assets/                   # Documentation images and media
+├── modules/                  # Child Modules (Stateless Logic)
+│   ├── api/                  # API Gateway (HTTP/REST) configurations
+│   ├── cdn/                  # CloudFront CDN with OAC
+│   ├── database/             # DynamoDB Table definitions
+│   ├── iam/                  # Least-privilege Roles & Policies
+│   ├── storage/              # Lambda Compute & Trigger setup
+│   └── lambda/               # S3 Buckets for static hosting
+│       └── lambda/           # Serverless backend logic
+│           ├── func.py       # Lambda Python source code
+│           └── func.zip      # Compiled deployment artifact
+│       ├── main.tf           # Module-specific resources
+│       ├── outputs.tf        # Values exported to the root
+│       ├── providers.tf      # Version constraints (No cloud block!)
+│       └── variables.tf      # Module inputs
+├── scripts/                  # Automation & Post-deployment tests
+│   ├── health-check.sh       # API Endpoint verification
+│   └── smoke-test-website.sh # CloudFront availability test
+├── website-files/            # Frontend static assets
+│   └── index.html            # Resume UI
+├── .gitignore                # Excluded files from Git
+├── .terraform.lock.hcl       # Provider lock file
+├── acm.tf                    # SSL/TLS Certificate configuration (Commented file)
+├── main.tf                   # Core infrastructure definitions
+├── outputs.tf                # Resource endpoints and IDs
+├── providers.tf              # AWS and Terraform backend configuration
+├── README.md                 # Generated documentation
+├── README.template.md        # Documentation source template
+├── route53.tf                # DNS management (Commented file)
+├── terraform.tfstate         # Local state file (if not using cloud)
+├── terraform.tfstate.backup  # Previous state snapshot
+├── .pre-commit-config.yaml   # Local git-hook orchestration
+├── .tflint.hcl               # TFLint AWS ruleset configuration
+├── .checkov.yml              # Checkov scan ignore list
+└── variables.tf              # Input parameters and configurations
 </pre>
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
 
