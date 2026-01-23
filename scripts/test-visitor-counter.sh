@@ -20,14 +20,14 @@ fi
 get_count() {
     local response
     response=$(curl -s -m 10 "$API_ENDPOINT") # 10s timeout
-    
+
     # Check if response is valid JSON and contains .count
     if ! echo "$response" | jq -e '.count' > /dev/null; then
         echo "❌ Error: Invalid API response or missing 'count' field."
         echo "Response received: $response"
         return 1
     fi
-    
+
     echo "$response" | jq '.count'
 }
 
@@ -52,7 +52,7 @@ for i in $(seq 1 $MAX_RETRIES); do
         SUCCESS=true
         break
     fi
-    
+
     echo "⚠️ Count hasn't updated yet. Retrying in $WAIT_TIME seconds..."
     sleep $WAIT_TIME
 done

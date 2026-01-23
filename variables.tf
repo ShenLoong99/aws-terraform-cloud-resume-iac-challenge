@@ -6,5 +6,6 @@ variable "aws_region" {
 
 variable "project_name" {
   description = "Project name prefix"
+  type        = string
   default     = "cloud-resume"
 }

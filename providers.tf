@@ -1,4 +1,5 @@
 terraform {
+  required_version = ">= 1.5.0"
   cloud {
     organization = "my-terraform-aws-projects-2025"
 

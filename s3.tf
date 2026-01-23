@@ -25,10 +25,22 @@ resource "aws_s3_bucket_lifecycle_configuration" "resume_lifecycle" {
   rule {
     id     = "archive-old-versions"
     status = "Enabled"
+
     filter {}
-    noncurrent_version_transition {
-      noncurrent_days = 30
-      storage_class   = "GLACIER"
+
+    # Example 1: Permanently delete objects after 30 days
+    expiration {
+      days = 30
+    }
+
+    # Abort failed uploads after 7 days to save money
+    abort_incomplete_multipart_upload {
+      days_after_initiation = 7
+    }
+
+    # Example 2: If you enabled versioning, delete non-current versions after 7 days
+    noncurrent_version_expiration {
+      noncurrent_days = 7
     }
   }
 }
@@ -70,7 +82,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "resume_encryption
 #     email_address      = "tansikai554@gmail.com"
 #   })
 
-#   # Forces an update if content changes 
+#   # Forces an update if content changes
 #   etag = md5(templatefile("${path.module}/website-files/index.html", {
 #     api_url            = "${aws_apigatewayv2_api.resume_api_gw.api_endpoint}/getcount"
 #     github_repo_url    = "https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge"

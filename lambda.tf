@@ -14,6 +14,11 @@ resource "aws_lambda_function" "resume_api" {
   handler          = "func.handler"
   runtime          = "python3.13"
 
+  # Enable X-Ray Tracing for the Lambda function
+  tracing_config {
+    mode = "Active"
+  }
+
   # COST: ARM64 is ~20% cheaper than x86
   architectures = ["arm64"]
   memory_size   = 128

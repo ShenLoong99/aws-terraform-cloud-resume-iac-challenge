@@ -58,7 +58,7 @@ jobs:
     needs: [changes, terraform]
     # Run if the app (frontend) changed OR the infra job finished successfully
     if: |
-      always() && 
+      always() &&
       (needs.changes.outputs.app == 'true' || needs.terraform.result == 'success')
     runs-on: ubuntu-latest
     environment: prod
@@ -90,7 +90,7 @@ jobs:
         run: |
           GITHUB_USER="${{ github.repository_owner }}"
           LINKEDIN=$(curl -s https://api.github.com/users/$GITHUB_USER/social_accounts | jq -r '.[] | select(.url | contains("linkedin.com")) | .url')
-          
+
           sed -i "s|__API_URL__|$API_URL|g" ./website-files/index.html
           sed -i "s|__GITHUB_REPO__|${{ github.server_url }}/${{ github.repository }}|g" ./website-files/index.html
           sed -i "s|__LINKEDIN_URL__|$LINKEDIN|g" ./website-files/index.html
