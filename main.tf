@@ -54,11 +54,11 @@ module "api" {
 
 # Module for Lambda
 module "lambda" {
-  source       = "./modules/lambda"
-  lambda_arn   = module.iam.lambda_arn
-  lambda_logs  = module.iam.lambda_logs
-  aws_region   = var.aws_region
-  default_tags = local.common_tags
+  source           = "./modules/lambda"
+  lambda_arn       = module.iam.lambda_arn
+  lambda_role_name = module.iam.lambda_role_name
+  aws_region       = var.aws_region
+  default_tags     = local.common_tags
 }
 
 # (Optional but Recommended) Create the actual Log Group in CloudWatch

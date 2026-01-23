@@ -24,5 +24,5 @@ resource "aws_lambda_function" "resume_api" {
   memory_size   = 128
   timeout       = 10
 
-  depends_on = [var.lambda_logs]
+  depends_on = [var.lambda_role_name]
 }

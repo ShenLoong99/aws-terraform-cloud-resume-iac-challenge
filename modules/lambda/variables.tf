@@ -3,8 +3,8 @@ variable "lambda_arn" {
   type        = string
 }
 
-variable "lambda_logs" {
-  description = "Policy attachment of Lambda Log"
+variable "lambda_role_name" {
+  description = "The name of the IAM role passed from the IAM module"
   type        = string
 }
 
