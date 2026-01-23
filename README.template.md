@@ -92,7 +92,7 @@
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
 
 <h2 id="file-structure">File Structure</h2>
-<pre>.
+<pre>aws-terraform-cloud-resume-iac-challenge
 ├── .github/
 │   └── workflows/            # CI/CD Pipeline Definitions
 │       ├── cd.yml            # Continuous Deployment
@@ -105,8 +105,8 @@
 │   ├── cdn/                  # CloudFront CDN with OAC
 │   ├── database/             # DynamoDB Table definitions
 │   ├── iam/                  # Least-privilege Roles & Policies
-│   ├── storage/              # Lambda Compute & Trigger setup
-│   └── lambda/               # S3 Buckets for static hosting
+│   ├── storage/              # S3 Buckets for static hosting
+│   └── lambda/               # Lambda Compute & Trigger setup
 │       └── lambda/           # Serverless backend logic
 │           ├── func.py       # Lambda Python source code
 │           └── func.zip      # Compiled deployment artifact
