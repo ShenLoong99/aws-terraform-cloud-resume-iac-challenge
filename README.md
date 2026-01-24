@@ -97,7 +97,7 @@
 │   └── workflows/            # CI/CD Pipeline Definitions
 │       ├── cd.yml            # Continuous Deployment
 │       ├── ci.yml            # Continuous Integration
-│       └── update-readme.yml # Automated README Sync
+│       └── documentation.yml # Automated README Sync
 ├── .terraform/               # Local Terraform managed files
 ├── assets/                   # Documentation images and media
 ├── modules/                  # Child Modules (Stateless Logic)
@@ -399,5 +399,5 @@ This section is automatically updated with the latest infrastructure details.
 [ci-url]: https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge/actions/workflows/ci.yml
 [cd-shield]: https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge/actions/workflows/cd.yml/badge.svg
 [cd-url]: https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge/actions/workflows/cd.yml
-[docs-shield]: https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge/actions/workflows/update-readme.yml/badge.svg
-[docs-url]: https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge/actions/workflows/update-readme.yml
+[docs-shield]: https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge/actions/workflows/documentation.yml/badge.svg
+[docs-url]: https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge/actions/workflows/documentation.yml
