@@ -6,6 +6,7 @@ on:
       - 'README.template.md'
       - '**.tf'
       - '.github/workflows/documentation.yml'
+      - '.terraform-docs.yml'
   workflow_dispatch:
 
 jobs:
