@@ -97,7 +97,7 @@
 │   └── workflows/            # CI/CD Pipeline Definitions
 │       ├── cd.yml            # Continuous Deployment
 │       ├── ci.yml            # Continuous Integration
-│       └── update-readme.yml # Automated README Sync
+│       └── documentation.yml # Automated README Sync
 ├── .terraform/               # Local Terraform managed files
 ├── assets/                   # Documentation images and media
 ├── modules/                  # Child Modules (Stateless Logic)
@@ -405,5 +405,5 @@ This section is automatically updated with the latest infrastructure details.
 [cd-shield]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/cd.yml/badge.svg
 [cd-url]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/cd.yml
 
-[docs-shield]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/update-readme.yml/badge.svg
-[docs-url]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/update-readme.yml
+[docs-shield]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/documentation.yml/badge.svg
+[docs-url]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/documentation.yml
