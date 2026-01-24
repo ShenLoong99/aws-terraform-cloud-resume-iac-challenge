@@ -30,20 +30,14 @@ jobs:
               -e "s|{{GITHUB_USER}}|${{ github.repository_owner }}|g" \
               README.template.md > README.md
 
-      # Populate individual README files in each module folder
-      - name: Generate Module READMEs (Recursive)
-        uses: terraform-docs/gh-actions@v1.4.1
-        with:
-          working-dir: .
-          config-file: .terraform-docs.yml
-
-      # Inject Terraform technical details into the newly created README.md
+      # Update all modules / root README.md
       - name: Render terraform docs
         uses: terraform-docs/gh-actions@v1.4.1
         with:
           working-dir: .
+          config-file: .terraform-docs.yml
           output-file: README.md
-          output-method: inject
+          output-method: inject # This ensures it targets the markers
 
       # Format README using Prettier
       - name: Format README
@@ -57,14 +51,13 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-          # Use a more aggressive add to ensure all module READMEs are caught
+          # Stage the root README AND any READMEs found in modules
           git add README.md
-          find modules -name "README.md" -exec git add {} +
+          find modules -name "README.md" | xargs git add
 
           if git diff --staged --quiet; then
             echo "No changes to any README files"
           else
             git commit -m "docs: automated technical reference update [skip ci]"
-            # Use GITHUB_REF to ensure we stay on the correct branch
-            git push origin HEAD:${{ github.ref }}
+            git push origin HEAD:${{ github.ref_name }}
           fi
