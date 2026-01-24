@@ -57,12 +57,14 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-          # Add the root README and all module READMEs
-          git add README.md modules/*/README.md
+          # Use a more aggressive add to ensure all module READMEs are caught
+          git add README.md
+          find modules -name "README.md" -exec git add {} +
 
           if git diff --staged --quiet; then
             echo "No changes to any README files"
           else
             git commit -m "docs: automated technical reference update [skip ci]"
-            git push origin ${{ github.ref_name }}
+            # Use GITHUB_REF to ensure we stay on the correct branch
+            git push origin HEAD:${{ github.ref }}
           fi
