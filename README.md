@@ -144,6 +144,32 @@ This section is automatically updated with the latest infrastructure details.
 
 <!-- BEGIN_TF_DOCS -->
 
+## Requirements
+
+| Name                                                                     | Version  |
+| ------------------------------------------------------------------------ | -------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.5.0 |
+| <a name="requirement_archive"></a> [archive](#requirement_archive)       | ~> 2.0   |
+| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | ~> 5.0   |
+| <a name="requirement_random"></a> [random](#requirement_random)          | ~> 3.0   |
+
+## Modules
+
+| Name                                                        | Source             | Version |
+| ----------------------------------------------------------- | ------------------ | ------- |
+| <a name="module_api"></a> [api](#module_api)                | ./modules/api      | n/a     |
+| <a name="module_cdn"></a> [cdn](#module_cdn)                | ./modules/cdn      | n/a     |
+| <a name="module_database"></a> [database](#module_database) | ./modules/database | n/a     |
+| <a name="module_iam"></a> [iam](#module_iam)                | ./modules/iam      | n/a     |
+| <a name="module_lambda"></a> [lambda](#module_lambda)       | ./modules/lambda   | n/a     |
+| <a name="module_storage"></a> [storage](#module_storage)    | ./modules/storage  | n/a     |
+
+## Resources
+
+| Name                                                                                                                                          | Type     |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| [aws_cloudwatch_log_group.lambda_log_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
+
 ## Inputs
 
 | Name                                                                  | Description         | Type     | Default            | Required |
@@ -161,12 +187,6 @@ This section is automatically updated with the latest infrastructure details.
 | <a name="output_lambda_arn"></a> [lambda_arn](#output_lambda_arn)                         | The ARN of the Lambda function              |
 | <a name="output_website_bucket_id"></a> [website_bucket_id](#output_website_bucket_id)    | The name of the S3 bucket                   |
 | <a name="output_website_url"></a> [website_url](#output_website_url)                      | The URL of the CloudFront distribution      |
-
-## Resources
-
-| Name                                                                                                                                          | Type     |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| [aws_cloudwatch_log_group.lambda_log_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
 
 <!-- END_TF_DOCS -->
 </details>
