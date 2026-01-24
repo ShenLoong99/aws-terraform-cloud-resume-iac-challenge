@@ -31,13 +31,20 @@ jobs:
               README.template.md > README.md
 
       # Update all modules / root README.md
+      # - name: Render terraform docs
+      #   uses: terraform-docs/gh-actions@v1.4.1
+      #   with:
+      #     working-dir: .
+      #     config-file: .terraform-docs.yml
+      #     output-file: README.md
+      #     output-method: inject # This ensures it targets the markers
+
       - name: Render terraform docs
         uses: terraform-docs/gh-actions@v1.4.1
         with:
           working-dir: .
-          config-file: .terraform-docs.yml
           output-file: README.md
-          output-method: inject # This ensures it targets the markers
+          output-method: inject
 
       # Format README using Prettier
       - name: Format README
