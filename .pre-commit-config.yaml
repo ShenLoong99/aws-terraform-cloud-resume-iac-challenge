@@ -18,11 +18,6 @@ repos:
         - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
         - --args=--recursive
       - id: terraform_docs      # Automates Technical Reference updates
-        name: terraform-docs (manual-mirror)
-        args:
-          - --args=--config=.terraform-docs.yml
-          - "."
-        pass_filenames: false
 
   - repo: https://github.com/bridgecrewio/checkov
     rev: 3.2.497 # It is best practice to use a specific stable version

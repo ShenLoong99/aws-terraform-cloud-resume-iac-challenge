@@ -30,6 +30,13 @@ jobs:
               -e "s|{{GITHUB_USER}}|${{ github.repository_owner }}|g" \
               README.template.md > README.md
 
+      # Populate individual README files in each module folder
+      - name: Generate Module READMEs (Recursive)
+        uses: terraform-docs/gh-actions@v1.3.0
+        with:
+          working-dir: .
+          config-file: .terraform-docs.yml
+
       # Inject Terraform technical details into the newly created README.md
       - name: Render terraform docs
         uses: terraform-docs/gh-actions@v1.4.1
