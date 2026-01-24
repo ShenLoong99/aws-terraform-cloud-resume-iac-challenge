@@ -144,7 +144,29 @@ This section is automatically updated with the latest infrastructure details.
 
 <!-- BEGIN_TF_DOCS -->
 
-{{ .Content }}
+## Inputs
+
+| Name                                                                  | Description         | Type     | Default            | Required |
+| --------------------------------------------------------------------- | ------------------- | -------- | ------------------ | :------: |
+| <a name="input_aws_region"></a> [aws_region](#input_aws_region)       | AWS region          | `string` | `"ap-southeast-1"` |    no    |
+| <a name="input_project_name"></a> [project_name](#input_project_name) | Project name prefix | `string` | `"cloud-resume"`   |    no    |
+
+## Outputs
+
+| Name                                                                                      | Description                                 |
+| ----------------------------------------------------------------------------------------- | ------------------------------------------- |
+| <a name="output_api_url"></a> [api_url](#output_api_url)                                  | The URL of the API Gateway                  |
+| <a name="output_aws_region"></a> [aws_region](#output_aws_region)                         | The AWS region where resources are deployed |
+| <a name="output_cloudfront_dist_id"></a> [cloudfront_dist_id](#output_cloudfront_dist_id) | The ID of the CloudFront distribution       |
+| <a name="output_lambda_arn"></a> [lambda_arn](#output_lambda_arn)                         | The ARN of the Lambda function              |
+| <a name="output_website_bucket_id"></a> [website_bucket_id](#output_website_bucket_id)    | The name of the S3 bucket                   |
+| <a name="output_website_url"></a> [website_url](#output_website_url)                      | The URL of the CloudFront distribution      |
+
+## Resources
+
+| Name                                                                                                                                          | Type     |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| [aws_cloudwatch_log_group.lambda_log_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
 
 <!-- END_TF_DOCS -->
 </details>
