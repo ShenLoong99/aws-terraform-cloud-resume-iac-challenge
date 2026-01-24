@@ -14,7 +14,4 @@ output:
   mode: replace
 
 content: |-
-  {{ .Header }}
-  {{ .Inputs }}
-  {{ .Outputs }}
-  {{ .Resources }}
+  {{ .Content }}
