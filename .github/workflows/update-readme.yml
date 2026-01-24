@@ -32,7 +32,7 @@ jobs:
 
       # Populate individual README files in each module folder
       - name: Generate Module READMEs (Recursive)
-        uses: terraform-docs/gh-actions@v1.3.0
+        uses: terraform-docs/gh-actions@v1.4.1
         with:
           working-dir: .
           config-file: .terraform-docs.yml
@@ -52,19 +52,17 @@ jobs:
       # Commit and Push with improved error handling
       - name: Commit and Push Changes
         run: |
-          # CRITICAL: Reclaim ownership of all files from 'root' to 'runner'
           sudo chown -R $USER:$USER .
-
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Mark the directory as safe for the current user
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-          git add README.md
+          # Add the root README and all module READMEs
+          git add README.md modules/*/README.md
+
           if git diff --staged --quiet; then
-            echo "No changes to README.md"
+            echo "No changes to any README files"
           else
-            git commit -m "docs: automated readme update [skip ci]"
-            git push origin main
+            git commit -m "docs: automated technical reference update [skip ci]"
+            git push origin ${{ github.ref_name }}
           fi
