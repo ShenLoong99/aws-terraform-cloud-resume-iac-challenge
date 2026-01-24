@@ -60,7 +60,7 @@ jobs:
 
           # Stage the root README AND any READMEs found in modules
           git add README.md
-          find modules -name "README.md" | xargs git add
+          git add modules/**/README.md
 
           if git diff --staged --quiet; then
             echo "No changes to any README files"
