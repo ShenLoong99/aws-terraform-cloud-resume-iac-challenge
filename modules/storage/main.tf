@@ -78,8 +78,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "resume_encryption
 #     api_url            = "${aws_apigatewayv2_api.resume_api_gw.api_endpoint}/getcount"
 #     github_repo_url    = "https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge"
 #     github_profile_url = "https://github.com/ShenLoong99"
-#     linkedin_url       = "https://www.linkedin.com/in/si-kai-tan/"
-#     email_address      = "tansikai554@gmail.com"
+#     linkedin_url       = ""
+#     email_address      = ""
 #   })
 
 #   # Forces an update if content changes
@@ -87,7 +87,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "resume_encryption
 #     api_url            = "${aws_apigatewayv2_api.resume_api_gw.api_endpoint}/getcount"
 #     github_repo_url    = "https://github.com/ShenLoong99/aws-terraform-cloud-resume-iac-challenge"
 #     github_profile_url = "https://github.com/ShenLoong99"
-#     linkedin_url       = "https://www.linkedin.com/in/si-kai-tan/"
-#     email_address      = "tansikai554@gmail.com"
+#     linkedin_url       = ""
+#     email_address      = ""
 #   }))
 # }
