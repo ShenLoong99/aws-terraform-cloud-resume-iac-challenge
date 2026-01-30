@@ -31,3 +31,12 @@ resource "aws_apigatewayv2_route" "api_route" {
   route_key = "GET /getcount"
   target    = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
 }
+
+# PERMISSION (Allowing API Gateway to call Lambda)
+resource "aws_lambda_permission" "api_gw_lambda" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = var.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.resume_api_gw.execution_arn}/*/*"
+}

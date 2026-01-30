@@ -12,3 +12,8 @@ variable "default_tags" {
   description = "Extra tags to pass to the provider"
   type        = map(string)
 }
+
+variable "function_name" {
+  description = "The function name of the lambda"
+  type        = string
+}

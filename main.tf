@@ -14,6 +14,7 @@ module "storage" {
   project_name = var.project_name
   aws_region   = var.aws_region
   default_tags = local.common_tags
+  cdn_arn      = module.cdn.cdn_arn
 }
 
 # Module for Cloudfront
@@ -24,41 +25,28 @@ module "cdn" {
   default_tags = local.common_tags
 }
 
-# Module for IAM (Permissions, roles, policies)
-module "iam" {
-  source            = "./modules/iam"
-  function_name     = module.lambda.function_name
-  execution_arn     = module.api.execution_arn
-  website_bucket_id = module.storage.website_bucket_id
-  s3_arn            = module.storage.s3_arn
-  cdn_arn           = module.cdn.cdn_arn
-  db_arn            = module.database.db_arn
-  aws_region        = var.aws_region
-  default_tags      = local.common_tags
-}
-
 # Module for DynamoDB
 module "database" {
-  source       = "./modules/database"
-  aws_region   = var.aws_region
-  default_tags = local.common_tags
+  source         = "./modules/database"
+  aws_region     = var.aws_region
+  default_tags   = local.common_tags
+  lambda_role_id = module.lambda.lambda_role_id
 }
 
 # Module for API Gateway
 module "api" {
-  source       = "./modules/api"
-  lambda_arn   = module.lambda.lambda_arn
-  aws_region   = var.aws_region
-  default_tags = local.common_tags
+  source        = "./modules/api"
+  lambda_arn    = module.lambda.lambda_function_arn
+  aws_region    = var.aws_region
+  default_tags  = local.common_tags
+  function_name = module.lambda.function_name
 }
 
 # Module for Lambda
 module "lambda" {
-  source           = "./modules/lambda"
-  lambda_arn       = module.iam.lambda_arn
-  lambda_role_name = module.iam.lambda_role_name
-  aws_region       = var.aws_region
-  default_tags     = local.common_tags
+  source       = "./modules/lambda"
+  aws_region   = var.aws_region
+  default_tags = local.common_tags
 }
 
 # (Optional but Recommended) Create the actual Log Group in CloudWatch

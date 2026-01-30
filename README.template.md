@@ -48,7 +48,7 @@
       <li><a href="#usage">Usage</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#challenges-faced">Challenges</a></li>
-      <li><a href="#cost-optimization">Cost Optimization</a></li>
+      <li><a href="#well-architected">AWS Well-Architected Framework</a></li>
       <li><a href="#special-thanks">Special Thanks</a></li>
    </ol>
 </details>
@@ -376,13 +376,74 @@ This section is automatically updated with the latest infrastructure details.
 </p>
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
 
-<h2 id="cost-optimization">Cost Optimization</h2>
-<ul>
-   <li><strong>AWS Free Tier:</strong> Utilizes S3, CloudFront, Lambda, and DynamoDB (On-Demand) to maintain <strong>$0/month</strong> operating costs.</li>
-   <li><strong>CloudFront OAC:</strong> Securely serves content without public S3 bucket access, reducing potential data egress abuse.</li>
-   <li><strong>Lambda Resource Tuning:</strong> Minimal memory allocation (128MB) ensures high performance for simple atomic counter increments.</li>
-</ul>
-<div align="right"><a href="#readme-top">↑ Back to Top</a></div>
+<h2 id="well-architected">🏗️ AWS Well-Architected Framework Alignment</h2>
+
+<p>This project is engineered to align with the six pillars of the <strong>AWS Well-Architected Framework</strong>, ensuring a production-grade cloud environment.</p>
+
+<table align="center">
+  <tr>
+    <th width="30%">Pillar</th>
+    <th width="70%">Project Implementation & Alignment</th>
+  </tr>
+  <tr>
+    <td><strong>1. Operational Excellence</strong></td>
+    <td>
+      <ul>
+        <li><strong>Infrastructure as Code (IaC):</strong> Entirely provisioned via modularized Terraform for consistency and repeatability.</li>
+        <li><strong>GitOps Workflow:</strong> Automated documentation (terraform-docs) and quality gates (TFLint, Checkov) integrated via GitHub Actions.</li>
+        <li><strong>Observability:</strong> Tagging strategy implemented via <code>local.common_tags</code> in <code>main.tf</code> for effective resource tracking.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>2. Security</strong></td>
+    <td>
+      <ul>
+        <li><strong>Principle of Least Privilege:</strong> Managed through a dedicated <code>iam</code> module that scope permissions specifically to Lambda, S3, and DynamoDB.</li>
+        <li><strong>Encryption:</strong> S3 website storage and DynamoDB tables utilize AWS-managed encryption at rest.</li>
+        <li><strong>Infrastructure Scanning:</strong> Static analysis via Checkov identifies security misconfigurations before deployment.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>3. Reliability</strong></td>
+    <td>
+      <ul>
+        <li><strong>Global Content Delivery:</strong> Utilization of <code>aws_cloudfront_distribution</code> ensures high availability and low latency via edge locations.</li>
+        <li><strong>Managed Services:</strong> Leveraging serverless components (Lambda, DynamoDB) to remove the operational burden of server maintenance and recovery.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>4. Performance Efficiency</strong></td>
+    <td>
+      <ul>
+        <li><strong>Serverless Architecture:</strong> Uses <code>aws_lambda</code> to scale automatically in response to incoming API traffic.</li>
+        <li><strong>Static Asset Optimization:</strong> S3 and CloudFront integration ensures efficient delivery of frontend assets without compute overhead.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>5. Cost Optimization</strong></td>
+    <td>
+      <ul>
+        <li><strong>Pay-as-you-go:</strong> The serverless stack (Lambda/API Gateway) incurs zero costs when idle.</li>
+        <li><strong>S3 Hosting:</strong> Significantly cheaper than running a dedicated EC2 instance for static web hosting.</li>
+        <li><strong>AWS Free Tier:</strong> Utilizes S3, CloudFront, Lambda, and DynamoDB (On-Demand) to maintain <strong>$0/month</strong> operating costs.</li>
+        <li><strong>CloudFront OAC:</strong> Securely serves content without public S3 bucket access, reducing potential data egress abuse.</li>
+        <li><strong>Lambda Resource Tuning:</strong> Minimal memory allocation (128MB) ensures high performance for simple atomic counter increments.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>6. Sustainability</strong></td>
+    <td>
+      <ul>
+        <li><strong>Resource Utilization:</strong> By using serverless modules, the carbon footprint is minimized as resources are only consumed during execution rather than running 24/7.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 <h2 id="special-thanks">⭐ Special Thanks</h2>
 <div align="center">

@@ -66,6 +66,23 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "resume_encryption
   }
 }
 
+# SECURITY: Allow ONLY CloudFront to read from S3
+resource "aws_s3_bucket_policy" "allow_access_from_cloudfront" {
+  bucket = aws_s3_bucket.resume_bucket.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action    = "s3:GetObject"
+      Effect    = "Allow"
+      Resource  = "${aws_s3_bucket.resume_bucket.arn}/*"
+      Principal = { Service = "cloudfront.amazonaws.com" }
+      Condition = {
+        StringEquals = { "AWS:SourceArn" = var.cdn_arn }
+      }
+    }]
+  })
+}
+
 # Commented out to use GitHub Actions for uploading website files
 # Upload the index.html file to the S3 Bucket
 # resource "aws_s3_object" "index" {
