@@ -10,7 +10,7 @@ resource "aws_lambda_function" "resume_api" {
   filename         = data.archive_file.lambda_zip.output_path
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
   function_name    = "resume_counter"
-  role             = var.lambda_arn
+  role             = aws_iam_role.lambda_role.arn
   handler          = "func.handler"
   runtime          = "python3.13"
 
@@ -24,5 +24,25 @@ resource "aws_lambda_function" "resume_api" {
   memory_size   = 128
   timeout       = 10
 
-  depends_on = [var.lambda_role_name]
+  depends_on = [aws_iam_role.lambda_role]
+}
+
+# THE PERMISSIONS (IAM Role for Lambda)
+resource "aws_iam_role" "lambda_role" {
+  name = "resume_lambda_role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action    = "sts:AssumeRole"
+      Effect    = "Allow"
+      Principal = { Service = "lambda.amazonaws.com" }
+    }]
+  })
+}
+
+# Cloudwatch Logging Permissions for Lambda
+# This creates a "connection" between your Lambda's Role and the Logging Policy
+resource "aws_iam_role_policy_attachment" "lambda_logs" {
+  role       = aws_iam_role.lambda_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }

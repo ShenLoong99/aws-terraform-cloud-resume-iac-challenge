@@ -9,3 +9,17 @@ resource "aws_dynamodb_table" "visitor_count" {
     type = "S"
   }
 }
+
+# SECURITY: Grant only the permissions needed for this specific table
+resource "aws_iam_role_policy" "lambda_db_policy" {
+  name = "LambdaDynamoDBAccess"
+  role = var.lambda_role_id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action   = ["dynamodb:UpdateItem", "dynamodb:GetItem"]
+      Effect   = "Allow"
+      Resource = aws_dynamodb_table.visitor_count.arn
+    }]
+  })
+}
