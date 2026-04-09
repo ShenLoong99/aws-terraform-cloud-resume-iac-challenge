@@ -188,37 +188,39 @@
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 20px;
         margin-top: 1rem;
-    }
+      }
 
-    .skill-category {
+      .skill-category {
         background: #f8fafc;
         padding: 15px;
         border-radius: 12px;
         border: 1px solid #e2e8f0;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
 
-    .skill-category:hover {
+      .skill-category:hover {
         transform: translateY(-3px);
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-    }
+      }
 
-    .skill-category h3 {
+      .skill-category h3 {
         font-size: 0.9rem;
         color: var(--primary);
         margin-bottom: 8px;
         display: flex;
         align-items: center;
         gap: 8px;
-    }
+      }
 
-    .skill-tag-group {
+      .skill-tag-group {
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
-    }
+      }
 
-    .skill-tag {
+      .skill-tag {
         font-size: 0.75rem;
         background: var(--card-bg);
         color: var(--text-light);
@@ -226,7 +228,41 @@
         border-radius: 4px;
         border: 1px solid #e2e8f0;
         font-weight: 500;
-    }
+      }
+      .cert-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 1.5rem;
+      }
+
+      .cert-item {
+        flex: 0 1 calc(33.333% - 20px);
+        min-width: 160px;
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+
+      .cert-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary);
+      }
+
+      .cert-link {
+        text-decoration: none;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
 
       @media (max-width: 600px) {
         .card {
@@ -234,6 +270,9 @@
         }
         h1 {
           font-size: 2rem;
+        }
+        .cert-item {
+          flex: 0 1 100%;
         }
       }
     </style>
@@ -268,117 +307,106 @@
         </section>
 
         <section>
-          <h2>
-            <i class="fas fa-award"></i>
-            Professional Certifications
-          </h2>
-          <table border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-              <tr>
-                <td>
-                    <a
-                        href="https://www.credly.com/badges/03917a1a-0b7e-4b2f-8a48-710c943c1c0f/public_url"
-                        target="_blank"
-                        title="CKA"
-                    >
-                    <div
-                        data-iframe-width="150"
-                        data-iframe-height="270"
-                        data-share-badge-id="03917a1a-0b7e-4b2f-8a48-710c943c1c0f"
-                        data-share-badge-host="https://www.credly.com"
-                    ></div>
-                    <script
-                        type="text/javascript"
-                        async
-                        src="//cdn.credly.com/assets/utilities/embed.js"
-                    ></script>
-                  </a>
-                </td>
-                <td>
-                    <a
-                        href="https://www.credly.com/badges/cf766d3c-d1b8-4ffc-a955-a8504ac45ec7/public_url"
-                        target="_blank"
-                        title="AWS"
-                    >
-                    <div
-                        data-iframe-width="150"
-                        data-iframe-height="270"
-                        data-share-badge-id="cf766d3c-d1b8-4ffc-a955-a8504ac45ec7"
-                        data-share-badge-host="https://www.credly.com"
-                    ></div>
-                    <script
-                        type="text/javascript"
-                        async
-                        src="//cdn.credly.com/assets/utilities/embed.js"
-                    ></script>
-                </td>
-                <td>
-                    <a
-                        href="https://www.credly.com/badges/0d3c8cd9-9ccf-4065-8306-04516de2c8ae/public_url"
-                        target="_blank"
-                        title="Terraform"
-                    >
-                    <div
-                        data-iframe-width="150"
-                        data-iframe-height="270"
-                        data-share-badge-id="0d3c8cd9-9ccf-4065-8306-04516de2c8ae"
-                        data-share-badge-host="https://www.credly.com"
-                    ></div>
-                    <script
-                        type="text/javascript"
-                        async
-                        src="//cdn.credly.com/assets/utilities/embed.js"
-                    ></script>
+          <h2><i class="fas fa-award"></i> Professional Certifications</h2>
+          <div class="cert-grid">
+            <div class="cert-item">
+              <a
+                class="cert-link"
+                href="https://www.credly.com/badges/03917a1a-0b7e-4b2f-8a48-710c943c1c0f/public_url"
+                target="_blank"
+                title="Certified Kubernetes Administrator"
+              >
+                <div
+                  data-iframe-width="150"
+                  data-iframe-height="270"
+                  data-share-badge-id="03917a1a-0b7e-4b2f-8a48-710c943c1c0f"
+                  data-share-badge-host="https://www.credly.com"
+                ></div>
               </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            </div>
+
+            <div class="cert-item">
+              <a
+                class="cert-link"
+                href="https://www.credly.com/badges/cf766d3c-d1b8-4ffc-a955-a8504ac45ec7/public_url"
+                target="_blank"
+                title="AWS Solutions Architect Associate"
+              >
+                <div
+                  data-iframe-width="150"
+                  data-iframe-height="270"
+                  data-share-badge-id="cf766d3c-d1b8-4ffc-a955-a8504ac45ec7"
+                  data-share-badge-host="https://www.credly.com"
+                ></div>
+              </a>
+            </div>
+
+            <div class="cert-item">
+              <a
+                class="cert-link"
+                href="https://www.credly.com/badges/0d3c8cd9-9ccf-4065-8306-04516de2c8ae/public_url"
+                target="_blank"
+                title="HashiCorp Certified: Terraform Associate"
+              >
+                <div
+                  data-iframe-width="150"
+                  data-iframe-height="270"
+                  data-share-badge-id="0d3c8cd9-9ccf-4065-8306-04516de2c8ae"
+                  data-share-badge-host="https://www.credly.com"
+                ></div>
+              </a>
+            </div>
+          </div>
+          <script
+            type="text/javascript"
+            async
+            src="//cdn.credly.com/assets/utilities/embed.js"
+          ></script>
         </section>
 
         <section>
-            <h2><i class="fas fa-tools"></i> Technical Arsenal</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fab fa-aws"></i> Cloud (AWS)</h3>
-                    <div class="skill-tag-group">
-                        <span class="skill-tag">EC2</span>
-                        <span class="skill-tag">VPC</span>
-                        <span class="skill-tag">S3</span>
-                        <span class="skill-tag">IAM</span>
-                        <span class="skill-tag">Lambda</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-dharmachakra"></i> Containers</h3>
-                    <div class="skill-tag-group">
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">CKA</span>
-                        <span class="skill-tag">Helm</span>
-                        <span class="skill-tag">Docker</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-code-branch"></i> Automation</h3>
-                    <div class="skill-tag-group">
-                        <span class="skill-tag">Terraform</span>
-                        <span class="skill-tag">GitHub Actions</span>
-                        <span class="skill-tag">GitOps</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-shield-alt"></i> DevSecOps</h3>
-                    <div class="skill-tag-group">
-                        <span class="skill-tag">Checkov</span>
-                        <span class="skill-tag">TFLint</span>
-                        <span class="skill-tag">Pentest Fixes</span>
-                        <span class="skill-tag">Policies</span>
-                    </div>
-                </div>
+          <h2><i class="fas fa-tools"></i> Technical Arsenal</h2>
+          <div class="skills-grid">
+            <div class="skill-category">
+              <h3><i class="fab fa-aws"></i> Cloud (AWS)</h3>
+              <div class="skill-tag-group">
+                <span class="skill-tag">EC2</span>
+                <span class="skill-tag">VPC</span>
+                <span class="skill-tag">S3</span>
+                <span class="skill-tag">IAM</span>
+                <span class="skill-tag">Lambda</span>
+              </div>
             </div>
+
+            <div class="skill-category">
+              <h3><i class="fas fa-dharmachakra"></i> Containers</h3>
+              <div class="skill-tag-group">
+                <span class="skill-tag">Kubernetes</span>
+                <span class="skill-tag">CKA</span>
+                <span class="skill-tag">Helm</span>
+                <span class="skill-tag">Docker</span>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h3><i class="fas fa-code-branch"></i> Automation</h3>
+              <div class="skill-tag-group">
+                <span class="skill-tag">Terraform</span>
+                <span class="skill-tag">GitHub Actions</span>
+                <span class="skill-tag">GitOps</span>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h3><i class="fas fa-shield-alt"></i> DevSecOps</h3>
+              <div class="skill-tag-group">
+                <span class="skill-tag">Checkov</span>
+                <span class="skill-tag">TFLint</span>
+                <span class="skill-tag">Pentest Fixes</span>
+                <span class="skill-tag">Policies</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
