@@ -27,6 +27,11 @@ provider "aws" {
   region = var.aws_region
 
   default_tags {
-    tags = local.common_tags
+    tags = {
+      Project     = "CloudResumeChallenge"
+      Environment = "Production"
+      ManagedBy   = "Terraform"
+      Owner       = "ShenLoong"
+    }
   }
 }
