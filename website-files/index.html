@@ -1,248 +1,463 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tan Si Kai | Cloud Solutions Architect & DevSecOps Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Tan Si Kai | CKA & AWS Certified DevOps & Infrastructure Engineer
+    </title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --bg: #f1f5f9;
-            --text: #0f172a;
-            --text-light: #64748b;
-            --card-bg: #ffffff;
-            --accent: #dbeafe;
-        }
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --bg: #f1f5f9;
+        --text: #0f172a;
+        --text-light: #64748b;
+        --card-bg: #ffffff;
+        --accent: #dbeafe;
+      }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-        body {
-            font-family: 'Inter', -apple-system, system-ui, sans-serif;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%);
-            color: var(--text);
-            padding: 40px 20px;
-            min-height: 100vh;
-        }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          system-ui,
+          sans-serif;
+        line-height: 1.6;
+        background: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%);
+        color: var(--text);
+        padding: 40px 20px;
+        min-height: 100vh;
+      }
 
-        .container { max-width: 850px; margin: auto; }
+      .container {
+        max-width: 850px;
+        margin: auto;
+      }
 
+      .card {
+        background: var(--card-bg);
+        padding: 3rem;
+        border-radius: 16px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: var(--primary);
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+      h1 {
+        font-size: 2.8rem;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.5rem;
+      }
+      header p {
+        color: var(--text-light);
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      .summary {
+        margin-bottom: 2rem;
+        color: var(--text-light);
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--primary);
+        margin: 2rem 0 1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      h2::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #e2e8f0;
+      }
+
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        list-style: none;
+      }
+      .skills-list li {
+        background: var(--accent);
+        color: var(--primary-dark);
+        padding: 5px 14px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.8rem;
+      }
+
+      .experience-item {
+        margin-bottom: 1.5rem;
+      }
+      .experience-item h4 {
+        color: var(--text);
+        font-size: 1rem;
+      }
+      .experience-item .sub-text {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+      .experience-item p {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        margin-top: 4px;
+      }
+
+      .blog-section {
+        background: #f8fafc;
+        padding: 20px;
+        border-left: 5px solid var(--primary);
+        border-radius: 0 8px 8px 0;
+        margin: 2rem 0;
+      }
+
+      .btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background: var(--primary);
+        color: white !important;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .counter {
+        margin-top: 3rem;
+        padding-top: 20px;
+        border-top: 1px solid #f1f5f9;
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--text-light);
+      }
+      #visitor-count {
+        font-weight: 800;
+        color: var(--primary);
+      }
+
+      footer {
+        margin-top: 2rem;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+      }
+      footer a {
+        color: var(--text-light);
+        font-size: 1.4rem;
+        transition: color 0.2s;
+      }
+      footer a:hover {
+        color: var(--primary);
+      }
+
+      @media (max-width: 600px) {
         .card {
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
+          padding: 1.5rem;
         }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 6px;
-            background: var(--primary);
+        h1 {
+          font-size: 2rem;
         }
-
-        header { text-align: center; margin-bottom: 2.5rem; }
-        h1 { font-size: 2.8rem; letter-spacing: -0.025em; margin-bottom: 0.5rem; }
-        header p { color: var(--text-light); font-size: 1.1rem; font-weight: 500; }
-
-        .summary { margin-bottom: 2rem; color: var(--text-light); text-align: center; }
-
-        h2 {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--primary);
-            margin: 2rem 0 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        h2::after { content: ""; flex: 1; height: 1px; background: #e2e8f0; }
-
-        .skills-list { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; }
-        .skills-list li {
-            background: var(--accent);
-            color: var(--primary-dark);
-            padding: 5px 14px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
-
-        .experience-item { margin-bottom: 1.5rem; }
-        .experience-item h4 { color: var(--text); font-size: 1rem; }
-        .experience-item .sub-text { color: var(--primary); font-weight: 600; font-size: 0.85rem; }
-        .experience-item p { color: var(--text-light); font-size: 0.9rem; margin-top: 4px; }
-
-        .blog-section {
-            background: #f8fafc;
-            padding: 20px;
-            border-left: 5px solid var(--primary);
-            border-radius: 0 8px 8px 0;
-            margin: 2rem 0;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: var(--primary);
-            color: white !important;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .counter {
-            margin-top: 3rem;
-            padding-top: 20px;
-            border-top: 1px solid #f1f5f9;
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-        #visitor-count { font-weight: 800; color: var(--primary); }
-
-        footer {
-            margin-top: 2rem;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-        }
-        footer a { color: var(--text-light); font-size: 1.4rem; transition: color 0.2s; }
-        footer a:hover { color: var(--primary); }
-
-        @media (max-width: 600px) { .card { padding: 1.5rem; } h1 { font-size: 2rem; } }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="card">
-            <header>
-                <h1>Tan Si Kai</h1>
-                <p>Cloud Solutions Architect & DevSecOps Engineer</p>
-            </header>
+      <div class="card">
+        <header>
+          <h1>Tan Si Kai</h1>
+          <p>DevSecOps & Infrastructure Engineer (CKA | AWS | Terraform)</p>
+        </header>
 
-            <div class="summary">
-                <p>Tech professional with 5+ years of experience across Project Management, Software QA, and Cloud Infrastructure. Dedicated to end-to-end product lifecycle ownership and high-performance serverless architecture.</p>
-            </div>
-
-            <section>
-                <h2><i class="fas fa-layer-group"></i> Built With</h2>
-                <ul class="skills-list">
-                    <li>AWS S3 & CloudFront (OAC)</li>
-                    <li>AWS Lambda (Python/Boto3)</li>
-                    <li>Amazon API Gateway</li>
-                    <li>Amazon DynamoDB</li>
-                    <li>Terraform (Infrastructure as Code)</li>
-                    <li>GitHub Actions (CI/CD)</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2><i class="fas fa-briefcase"></i> Work Experience</h2>
-                <div class="experience-item">
-                    <h4>Software Quality Assurance</h4>
-                    <span class="sub-text">SiteGiant | Jun 2025 - Present</span>
-                    <p>Prioritizing testing for feature releases and maintaining clear, detailed test cases using Playwright and Kiwi TCMS.</p>
-                </div>
-                <div class="experience-item">
-                    <h4>Project Manager</h4>
-                    <span class="sub-text">VeecoTech Group | Jul 2022 - Jun 2025</span>
-                    <p>Led Agile teams to deliver complex systems for MCMC and MBSP, using Asana for timeline and resource planning.</p>
-                </div>
-                <div class="experience-item">
-                    <h4>Software Developer</h4>
-                    <span class="sub-text">VeecoTech Group | Jul 2021 - Jun 2022</span>
-                    <p>Developed scalable backend solutions using PHP, Laravel, and JavaScript.</p>
-                </div>
-            </section>
-
-            <section>
-                <h2><i class="fas fa-briefcase"></i> Highlighted Projects</h2>
-                <div class="experience-item">
-                    <h4>HR Management System Integration</h4>
-                    <p>Led an Agile team to consolidate 17 disparate systems into a single HR platform for MBSP.</p>
-                </div>
-                <div class="experience-item">
-                    <h4>Scam Tracking System</h4>
-                    <p>Managed the end-to-end development of a national scam tracking platform for MCMC.</p>
-                </div>
-            </section>
-
-            <section>
-                <h2><i class="fas fa-project-diagram"></i> Cloud Portfolio</h2>
-                <div class="experience-item">
-                    <h4>aws-terraform-2-tier-webapp</h4>
-                    <p>A secure VPC environment with EC2 (app layer), RDS (database), and ALB routing.</p>
-                </div>
-                <div class="experience-item">
-                    <h4>aws-terraform-cloud-dictionary</h4>
-                    <p>Serverless dictionary app built with Amplify, Lambda, and DynamoDB.</p>
-                </div>
-            </section>
-
-            <section>
-                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-                <div class="experience-item">
-                    <h4>Bachelor's Degree in Computing</h4>
-                    <span class="sub-text">Coventry University | 2019 - 2021</span>
-                </div>
-                <div class="experience-item">
-                    <h4>Diploma in Internet Technology</h4>
-                    <span class="sub-text">Tunku Abdul Rahman University of Management and Technology | 2017 - 2019</span>
-                </div>
-            </section>
-
-            <section>
-                <h2><i class="fas fa-award"></i> Professional Certifications</h2>
-                <ul class="skills-list">
-                    <li>AWS Certified Solutions Architect - Associate</li>
-                    <li>HashiCorp Certified: Terraform Associate</li>
-                </ul>
-            </section>
-
-            <section class="blog-section">
-                <h3>The Cloud Resume Challenge</h3>
-                <p>
-                    I built this serverless website to demonstrate full-stack cloud proficiency. The architecture includes a <strong>CloudFront OAC</strong> secured S3 bucket, a <strong>GitHub Actions</strong> CI/CD pipeline, and a visit counter powered by Lambda and DynamoDB.
-                </p>
-                <p>View the challenge here: <a href="https://cloudresumechallenge.dev/docs/extensions/terraform-getting-started/">Terraform Your Cloud Resume Challenge</a></p>
-                <a href="__GITHUB_REPO__" class="btn">View Source Code</a>
-            </section>
-
-            <div class="counter">
-                <i class="fas fa-eye"></i> This profile has been viewed <span id="visitor-count">0</span> times
-            </div>
+        <div class="summary">
+          <p>
+            CKA-Certified Infrastructure Engineer with 4+ years of professional
+            SDLC experience. Specialized in automating cloud orchestration and
+            implementing Zero-Trust security models. Achieving 99.9% uptime
+            using GitOps-style Terraform workflows and Kubernetes management.
+          </p>
         </div>
 
-        <footer>
-            <a href="__GITHUB_PROFILE__" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="__LINKEDIN_URL__" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:__EMAIL__" title="Email"><i class="fas fa-envelope"></i></a>
-        </footer>
+        <section>
+          <h2><i class="fas fa-layer-group"></i> Built With</h2>
+          <ul class="skills-list">
+            <li>AWS S3 & CloudFront (OAC)</li>
+            <li>AWS Lambda (Python/Boto3)</li>
+            <li>Amazon API Gateway</li>
+            <li>Amazon DynamoDB</li>
+            <li>Terraform (Infrastructure as Code)</li>
+            <li>GitHub Actions (CI/CD)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>
+            <i class="fas fa-award"></i>
+            Professional Certifications
+          </h2>
+          <ul class="skills-list">
+            <li>
+              Certified Kubernetes Administrator (CKA):
+              <a
+                href="https://www.credly.com/badges/03917a1a-0b7e-4b2f-8a48-710c943c1c0f/public_url"
+                target="_blank"
+                title="CKA"
+              >
+                <div
+                  data-iframe-width="150"
+                  data-iframe-height="270"
+                  data-share-badge-id="03917a1a-0b7e-4b2f-8a48-710c943c1c0f"
+                  data-share-badge-host="https://www.credly.com"
+                ></div>
+                <script
+                  type="text/javascript"
+                  async
+                  src="//cdn.credly.com/assets/utilities/embed.js"
+                ></script>
+              </a>
+            </li>
+            <li>
+              AWS Solutions Architect – Associate (SAA):
+              <a
+                href="https://www.credly.com/badges/cf766d3c-d1b8-4ffc-a955-a8504ac45ec7/public_url"
+                target="_blank"
+                title="AWS"
+              >
+                <div
+                  data-iframe-width="150"
+                  data-iframe-height="270"
+                  data-share-badge-id="cf766d3c-d1b8-4ffc-a955-a8504ac45ec7"
+                  data-share-badge-host="https://www.credly.com"
+                ></div>
+                <script
+                  type="text/javascript"
+                  async
+                  src="//cdn.credly.com/assets/utilities/embed.js"
+                ></script>
+              </a>
+            </li>
+            <li>
+              HashiCorp Certified: Terraform Associate:
+              <a
+                href="https://www.credly.com/badges/0d3c8cd9-9ccf-4065-8306-04516de2c8ae/public_url"
+                target="_blank"
+                title="Terraform"
+              >
+                <div
+                  data-iframe-width="150"
+                  data-iframe-height="270"
+                  data-share-badge-id="0d3c8cd9-9ccf-4065-8306-04516de2c8ae"
+                  data-share-badge-host="https://www.credly.com"
+                ></div>
+                <script
+                  type="text/javascript"
+                  async
+                  src="//cdn.credly.com/assets/utilities/embed.js"
+                ></script>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>
+            <i class="fas fa-layer-group"></i>
+            Technical Arsenal
+          </h2>
+          <ul class="skills-list">
+            <li>AWS (EC2, VPC, S3, IAM, Lambda)</li>
+            <li>Kubernetes (Orchestration, Helm, CKA)</li>
+            <li>Terraform (IaC, Modules, State Mgmt)</li>
+            <li>GitHub Actions (CI/CD Automation)</li>
+            <li>DevSecOps (Checkov, TFLint, Pentest Remediation)</li>
+            <li>Container Security (Network Policies, Secrets)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>
+            <i class="fas fa-briefcase"></i>
+            Professional Experience
+          </h2>
+          <div class="experience-item">
+            <h4>Software Quality Assurance</h4>
+            <span class="sub-text">SiteGiant | Jun 2025 - Oct 2025</span>
+            <p>
+              Enhanced release reliability in high-traffic e-commerce
+              environments by implementing standardized bug-tracking workflows
+              and CI/CD quality gates.
+            </p>
+          </div>
+          <div class="experience-item">
+            <h4>Project Manager</h4>
+            <span class="sub-text">
+              VeecoTech Solutions | Jul 2022 - Jun 2025
+            </span>
+            <p>
+              Architected High Availability (HA) and Fault-Tolerant
+              infrastructure for the MCMC Scam Tracking System, ensuring 24/7
+              uptime and zero-trust data environments.
+            </p>
+          </div>
+          <div class="experience-item">
+            <h4>Software Developer</h4>
+            <span class="sub-text">
+              VeecoTech Solutions | Jul 2021 - Jun 2022
+            </span>
+            <p>
+              Developed core backend logic for financial systems using PHP and
+              JavaScript, automating reporting tools to improve team data
+              accuracy.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>
+            <i class="fas fa-project-diagram"></i> Featured GitHub Projects
+          </h2>
+          <div class="experience-item">
+            <h4>Multi-Tier Cloud Architecture</h4>
+            <p>
+              Provisioned a 2-tier web application with ALB, ASG, and Multi-AZ
+              RDS via Terraform Modules; achieved 100% automated infrastructure
+              lifecycle.
+            </p>
+          </div>
+          <div class="experience-item">
+            <h4>DevSecOps & Automated Governance</h4>
+            <p>
+              Enforced 100% security compliance for enterprise Terraform
+              configurations using Checkov SCA, TFLint, and automated
+              documentation pipelines.
+            </p>
+          </div>
+          <div class="experience-item">
+            <h4>Event-Driven Serverless Pipelines</h4>
+            <p>
+              Reduced media processing time by 95% using an asynchronous AWS
+              Lambda and Polly TTS pipeline triggered by S3 events.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>
+            <i class="fas fa-graduation-cap"></i>
+            Education
+          </h2>
+          <div class="experience-item">
+            <h4>Bachelor's Degree in Computing</h4>
+            <span class="sub-text">Coventry University | 2019 - 2021</span>
+          </div>
+          <div class="experience-item">
+            <h4>Diploma in Internet Technology</h4>
+            <span class="sub-text">
+              Tunku Abdul Rahman University of Management and Technology | 2017
+              - 2019
+            </span>
+          </div>
+        </section>
+
+        <section class="blog-section">
+          <h3>The Cloud Resume Challenge</h3>
+          <p>
+            I built this serverless website to demonstrate full-stack cloud
+            proficiency. The architecture includes a
+            <strong>CloudFront OAC</strong>
+            secured S3 bucket, a
+            <strong>GitHub Actions</strong>
+            CI/CD pipeline, and a visit counter powered by Lambda and DynamoDB.
+          </p>
+          <p>
+            View the challenge here:
+            <a
+              href="https://cloudresumechallenge.dev/docs/extensions/terraform-getting-started/"
+            >
+              Terraform Your Cloud Resume Challenge
+            </a>
+          </p>
+          <a href="__GITHUB_REPO__" class="btn">View Source Code</a>
+        </section>
+
+        <div class="counter">
+          <i class="fas fa-eye"></i>
+          This profile has been viewed
+          <span id="visitor-count">0</span>
+          times
+        </div>
+      </div>
+
+      <footer>
+        <a href="__GITHUB_PROFILE__" target="_blank" title="GitHub">
+          GitHub <i class="fab fa-github"></i>
+        </a>
+        <a
+          href=" https://www.credly.com/users/tan-si-kai.99619f5c"
+          target="_blank"
+          title="Credly"
+        >
+          Credly <i class="fas fa-certificate"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/si-kai-tan"
+          target="_blank"
+          title="LinkedIn"
+        >
+          LinkedIn <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:__EMAIL__" title="Email">
+          Email <i class="fas fa-envelope"></i>
+        </a>
+      </footer>
     </div>
 
     <script>
-        const apiURL = '__API_URL__'; // Patched by GitHub Actions
-        async function getCounter() {
-            try {
-                const response = await fetch(apiURL);
-                const data = await response.json();
-                document.getElementById('visitor-count').innerText = data.count;
-            } catch (err) {
-                console.error("Error fetching counter:", err);
-                document.getElementById('visitor-count').innerText = "1";
-            }
+      const apiURL = "__API_URL__"; // Patched by GitHub Actions
+      async function getCounter() {
+        try {
+          const response = await fetch(apiURL);
+          const data = await response.json();
+          document.getElementById("visitor-count").innerText = data.count;
+        } catch (err) {
+          console.error("Error fetching counter:", err);
+          document.getElementById("visitor-count").innerText = "1";
         }
-        getCounter();
+      }
+      getCounter();
     </script>
-</body>
+  </body>
 </html>
