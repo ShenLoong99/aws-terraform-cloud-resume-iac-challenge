@@ -171,10 +171,10 @@ This section is automatically updated with the latest infrastructure details.
 
 ## Inputs
 
-| Name                                                                  | Description         | Type     | Default            | Required |
-| --------------------------------------------------------------------- | ------------------- | -------- | ------------------ | :------: |
-| <a name="input_aws_region"></a> [aws_region](#input_aws_region)       | AWS region          | `string` | `"ap-southeast-1"` |    no    |
-| <a name="input_project_name"></a> [project_name](#input_project_name) | Project name prefix | `string` | `"cloud-resume"`   |    no    |
+| Name                                                                  | Description         | Type     | Default          | Required |
+| --------------------------------------------------------------------- | ------------------- | -------- | ---------------- | :------: |
+| <a name="input_aws_region"></a> [aws_region](#input_aws_region)       | AWS region          | `string` | `"us-east-1"`    |    no    |
+| <a name="input_project_name"></a> [project_name](#input_project_name) | Project name prefix | `string` | `"cloud-resume"` |    no    |
 
 ## Outputs
 
