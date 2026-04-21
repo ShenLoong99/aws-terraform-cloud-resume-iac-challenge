@@ -149,9 +149,7 @@ This section is automatically updated with the latest infrastructure details.
 | Name                                                                     | Version  |
 | ------------------------------------------------------------------------ | -------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.5.0 |
-| <a name="requirement_archive"></a> [archive](#requirement_archive)       | ~> 2.0   |
 | <a name="requirement_aws"></a> [aws](#requirement_aws)                   | ~> 5.0   |
-| <a name="requirement_random"></a> [random](#requirement_random)          | ~> 3.0   |
 
 ## Modules
 

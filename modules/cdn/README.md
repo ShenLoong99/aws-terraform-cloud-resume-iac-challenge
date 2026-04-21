@@ -7,14 +7,6 @@
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.0 |
 | <a name="requirement_cloudns"></a> [cloudns](#requirement\_cloudns) | ~> 1.0 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.100.0 |
-| <a name="provider_aws.us-east-1"></a> [aws.us-east-1](#provider\_aws.us-east-1) | 5.100.0 |
-| <a name="provider_cloudns"></a> [cloudns](#provider\_cloudns) | 1.0.10 |
-
 ## Modules
 
 No modules.
