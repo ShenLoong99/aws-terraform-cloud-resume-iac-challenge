@@ -1,7 +1,7 @@
 # The Certificate Request
 resource "aws_acm_certificate" "cert" {
   provider          = aws.us-east-1
-  domain_name       = "portfolio.tansikai-cloud-resume.abrdns.com"
+  domain_name       = var.domain_name
   validation_method = "DNS"
 
   lifecycle {
@@ -9,8 +9,8 @@ resource "aws_acm_certificate" "cert" {
   }
 }
 
-# DNS Record
-resource "cloudns_dns_record" "cert_validation" {
+# Create the DNS records in Route 53 for ACM Validation
+resource "aws_route53_record" "cert_validation" {
   for_each = {
     for dvo in aws_acm_certificate.cert.domain_validation_options : dvo.domain_name => {
       name   = dvo.resource_record_name
@@ -19,17 +19,18 @@ resource "cloudns_dns_record" "cert_validation" {
     }
   }
 
-  name  = each.value.name
-  value = each.value.record
-  type  = each.value.type
-  zone  = "tansikai-cloud-resume.abrdns.com"
-  ttl   = "3600"
+  allow_overwrite = true
+  name            = each.value.name
+  records         = [each.value.record]
+  ttl             = 60
+  type            = each.value.type
+  zone_id         = var.route53_zone_id
 }
 
 # The Validation Waiter
 resource "aws_acm_certificate_validation" "cert" {
   provider        = aws.us-east-1
   certificate_arn = aws_acm_certificate.cert.arn
-  # This tells Terraform to wait until the records are visible
-  validation_record_fqdns = [for record in cloudns_dns_record.cert_validation : record.name]
+  # Route 53 uses 'fqdn' as the attribute name
+  validation_record_fqdns = [for record in aws_route53_record.cert_validation : record.fqdn]
 }

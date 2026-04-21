@@ -10,14 +10,6 @@ variable "project_name" {
   default     = "cloud-resume"
 }
 
-variable "CLOUD_USER_ID" {
-  description = "ClouDNS User ID for DNS validation"
-  type        = string
-  sensitive   = true
-}
-
-variable "CLOUD_PASSWORD" {
-  description = "ClouDNS Password for DNS validation"
-  type        = string
-  sensitive   = true
+variable "route53_zone_id" {
+  type = string
 }

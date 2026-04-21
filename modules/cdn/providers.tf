@@ -6,9 +6,5 @@ terraform {
       configuration_aliases = [aws.us-east-1]
       version               = "~> 5.0"
     }
-    cloudns = {
-      source  = "cloudns/cloudns"
-      version = "~> 1.0"
-    }
   }
 }
