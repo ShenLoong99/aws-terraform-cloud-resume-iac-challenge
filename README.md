@@ -150,6 +150,7 @@ This section is automatically updated with the latest infrastructure details.
 | ------------------------------------------------------------------------ | -------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.5.0 |
 | <a name="requirement_aws"></a> [aws](#requirement_aws)                   | ~> 5.0   |
+| <a name="requirement_cloudns"></a> [cloudns](#requirement_cloudns)       | ~> 1.0   |
 
 ## Modules
 
@@ -169,10 +170,12 @@ This section is automatically updated with the latest infrastructure details.
 
 ## Inputs
 
-| Name                                                                  | Description         | Type     | Default          | Required |
-| --------------------------------------------------------------------- | ------------------- | -------- | ---------------- | :------: |
-| <a name="input_aws_region"></a> [aws_region](#input_aws_region)       | AWS region          | `string` | `"us-east-1"`    |    no    |
-| <a name="input_project_name"></a> [project_name](#input_project_name) | Project name prefix | `string` | `"cloud-resume"` |    no    |
+| Name                                                                        | Description                         | Type     | Default          | Required |
+| --------------------------------------------------------------------------- | ----------------------------------- | -------- | ---------------- | :------: |
+| <a name="input_CLOUD_PASSWORD"></a> [CLOUD_PASSWORD](#input_CLOUD_PASSWORD) | ClouDNS Password for DNS validation | `string` | n/a              |   yes    |
+| <a name="input_CLOUD_USER_ID"></a> [CLOUD_USER_ID](#input_CLOUD_USER_ID)    | ClouDNS User ID for DNS validation  | `string` | n/a              |   yes    |
+| <a name="input_aws_region"></a> [aws_region](#input_aws_region)             | AWS region                          | `string` | `"us-east-1"`    |    no    |
+| <a name="input_project_name"></a> [project_name](#input_project_name)       | Project name prefix                 | `string` | `"cloud-resume"` |    no    |
 
 ## Outputs
 
