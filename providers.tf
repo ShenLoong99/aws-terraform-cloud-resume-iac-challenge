@@ -16,6 +16,7 @@ terraform {
 }
 
 provider "aws" {
+  alias  = "us-east-1"
   region = var.aws_region
 
   default_tags {
@@ -26,10 +27,4 @@ provider "aws" {
       Owner       = "ShenLoong"
     }
   }
-}
-
-# Aliased provider for ACM
-provider "aws" {
-  alias  = "us-east-1"
-  region = "us-east-1"
 }

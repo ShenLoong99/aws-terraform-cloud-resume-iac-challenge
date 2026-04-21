@@ -9,6 +9,10 @@ module "storage" {
 module "cdn" {
   source      = "./modules/cdn"
   domain_name = module.storage.domain_name
+  providers = {
+    aws           = aws
+    aws.us-east-1 = aws.us-east-1
+  }
 }
 
 # Module for DynamoDB
