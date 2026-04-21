@@ -7,7 +7,7 @@ resource "random_string" "bucket_suffix" {
 
 # Create the S3 Bucket to host the resume website
 resource "aws_s3_bucket" "resume_bucket" {
-  bucket        = "${var.project_name}-${random_string.bucket_suffix.result}"
+  bucket        = "${var.project_name}-us-${random_string.bucket_suffix.result}"
   force_destroy = true
 }
 
