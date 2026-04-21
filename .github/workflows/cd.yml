@@ -88,10 +88,8 @@ jobs:
 
       - name: Inject into HTML
         run: |
-          REPO_URL="${{ github.server_url }}/${{ github.repository }}"
-
           sed -i "s|__API_URL__|$API_URL|g" ./website-files/index.html
-          sed -i "s|__GITHUB_REPO__|$REPO_URL|g" ./website-files/index.html
+          sed -i "s|__GITHUB_REPO__|${{ github.event.repository.html_url }}|g" ./website-files/index.html
           sed -i "s|__EMAIL__|${{ secrets.EMAIL_ADDRESS }}|g" ./website-files/index.html
 
       - name: Configure AWS Credentials
