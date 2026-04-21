@@ -13,6 +13,7 @@ module "cdn" {
     aws           = aws
     aws.us-east-1 = aws.us-east-1
   }
+  route53_zone_id = var.route53_zone_id
 }
 
 # Module for DynamoDB
