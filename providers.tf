@@ -12,11 +12,14 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    cloudns = {
+      source  = "cloudns/cloudns"
+      version = "~> 1.0"
+    }
   }
 }
 
 provider "aws" {
-  alias  = "us-east-1"
   region = var.aws_region
 
   default_tags {
@@ -27,4 +30,15 @@ provider "aws" {
       Owner       = "ShenLoong"
     }
   }
+}
+
+# Aliased provider for ACM
+provider "aws" {
+  alias  = "us-east-1"
+  region = "us-east-1"
+}
+
+provider "cloudns" {
+  auth_id  = var.CLOUD_USER_ID
+  password = var.CLOUD_PASSWORD
 }

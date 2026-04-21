@@ -31,5 +31,5 @@ resource "aws_acm_certificate_validation" "cert" {
   provider        = aws.us-east-1
   certificate_arn = aws_acm_certificate.cert.arn
   # This tells Terraform to wait until the records are visible
-  validation_record_fqdns = [for record in cloudns_dns_record.cert_validation : record.hostname]
+  validation_record_fqdns = [for record in cloudns_dns_record.cert_validation : record.name]
 }
