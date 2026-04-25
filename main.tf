@@ -13,7 +13,6 @@ module "cdn" {
     aws.us-east-1 = aws.us-east-1
   }
   domain_name      = var.domain_name
-  route53_zone_id  = var.route53_zone_id
   s3_bucket_domain = module.storage.s3_bucket_domain
 }
 
