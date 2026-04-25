@@ -7,12 +7,12 @@ module "storage" {
 
 # Module for Cloudfront
 module "cdn" {
-  source      = "./modules/cdn"
-  domain_name = module.storage.domain_name
+  source = "./modules/cdn"
   providers = {
     aws           = aws
     aws.us-east-1 = aws.us-east-1
   }
+  domain_name     = var.domain_name
   route53_zone_id = var.route53_zone_id
 }
 

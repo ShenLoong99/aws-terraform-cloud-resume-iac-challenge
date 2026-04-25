@@ -169,11 +169,12 @@ This section is automatically updated with the latest infrastructure details.
 
 ## Inputs
 
-| Name                                                                           | Description         | Type     | Default          | Required |
-| ------------------------------------------------------------------------------ | ------------------- | -------- | ---------------- | :------: |
-| <a name="input_aws_region"></a> [aws_region](#input_aws_region)                | AWS region          | `string` | `"us-east-1"`    |    no    |
-| <a name="input_project_name"></a> [project_name](#input_project_name)          | Project name prefix | `string` | `"cloud-resume"` |    no    |
-| <a name="input_route53_zone_id"></a> [route53_zone_id](#input_route53_zone_id) | n/a                 | `string` | n/a              |   yes    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region | `string` | `"us-east-1"` | no |
+| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | Domain name of the S3 bucket | `string` | n/a | yes |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name prefix | `string` | `"cloud-resume"` | no |
+| <a name="input_route53_zone_id"></a> [route53\_zone\_id](#input\_route53\_zone\_id) | The ID of the Route 53 Hosted Zone | `string` | n/a | yes |
 
 ## Outputs
 
