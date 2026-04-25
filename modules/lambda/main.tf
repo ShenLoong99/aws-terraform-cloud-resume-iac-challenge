@@ -46,9 +46,3 @@ resource "aws_iam_role_policy_attachment" "lambda_logs" {
   role       = aws_iam_role.lambda_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
-
-# Create the actual Log Group in CloudWatch
-resource "aws_cloudwatch_log_group" "lambda_log_group" {
-  name              = "/aws/lambda/resume_counter"
-  retention_in_days = 7
-}
