@@ -16,7 +16,7 @@ skip-check:
 
   # Database-specific skips
   - CKV_AWS_28 # Ensure DynamoDB point in time recovery (backup) is enabled (Avoids ~$0.20 per GB / month.)
-  - CKV_AWS_119  # Ensure DynamoDB Tables are encrypted using a KMS Customer Managed CMK (Avoids $1/month per key)
+  - CKV_AWS_119 # Ensure DynamoDB Tables are encrypted using a KMS Customer Managed CMK (Avoids $1/month per key)
 
   # lambda-specific skips
   - CKV_AWS_117 # Ensure that AWS Lambda function is configured inside a VPC (Avoids ~$32/month (NAT Gateway))
@@ -27,7 +27,7 @@ skip-check:
 
   # S3-specific skips
   - CKV_AWS_145 # Ensure that S3 buckets are encrypted with KMS by default (Avoids $1/mo KMS fee)
-  - CKV_AWS_18  # Ensure the S3 bucket has access logging enabled (Saves on request/storage costs)
+  - CKV_AWS_18 # Ensure the S3 bucket has access logging enabled (Saves on request/storage costs)
   - CKV2_AWS_62 # Ensure S3 buckets should have event notifications enabled (Irrelevant)
   - CKV_AWS_144 # Ensure that S3 bucket has cross-region replication enabled (Prevents doubling storage costs)
 
@@ -37,3 +37,6 @@ skip-check:
 
   # GitHub Action skips
   - CKV2_GHA_1 # Ensure top-level permissions are not set to write-all (Intentional skip as the workflows requires the permission)
+
+  # Route 53-specific skips
+  - CKV2_AWS_38 # Ensure Domain Name System Security Extensions (DNSSEC) signing is enabled for Amazon Route 53 public hosted zones (costly for this project)

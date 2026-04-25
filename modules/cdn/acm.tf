@@ -55,3 +55,14 @@ resource "aws_route53_record" "www" {
     evaluate_target_health = false
   }
 }
+
+resource "aws_cloudwatch_log_group" "route53_logs" {
+  provider          = aws.us-east-1
+  name              = "/aws/route53/${var.domain_name}"
+  retention_in_days = 7
+}
+
+resource "aws_route53_query_log" "main" {
+  cloudwatch_log_group_arn = aws_cloudwatch_log_group.route53_logs.arn
+  zone_id                  = aws_route53_zone.primary.zone_id
+}
