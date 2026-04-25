@@ -39,5 +39,6 @@ No modules.
 |------|-------------|
 | <a name="output_cdn_arn"></a> [cdn\_arn](#output\_cdn\_arn) | The ARN of the CloudFront distribution |
 | <a name="output_cloudfront_dist_id"></a> [cloudfront\_dist\_id](#output\_cloudfront\_dist\_id) | The ID of the CloudFront distribution |
+| <a name="output_custom_domain_url"></a> [custom\_domain\_url](#output\_custom\_domain\_url) | The permanent URL for the Cloud Resume |
 | <a name="output_website_url"></a> [website\_url](#output\_website\_url) | The URL of the CloudFront distribution |
 <!-- END_TF_DOCS -->
