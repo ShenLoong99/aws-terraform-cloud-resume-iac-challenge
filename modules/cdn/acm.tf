@@ -1,3 +1,20 @@
+# Define the permission policy
+data "aws_iam_policy_document" "route53_query_logging_policy" {
+  statement {
+    actions = [
+      "logs:CreateLogStream",
+      "logs:PutLogEvents",
+    ]
+
+    resources = ["arn:aws:logs:us-east-1:*:log-group:/aws/route53/*"]
+
+    principals {
+      identifiers = ["route53.amazonaws.com"]
+      type        = "Service"
+    }
+  }
+}
+
 # This requests the certificate
 resource "aws_acm_certificate" "cert" {
   provider          = aws.us-east-1
@@ -54,6 +71,13 @@ resource "aws_route53_record" "www" {
     zone_id                = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
     evaluate_target_health = false
   }
+}
+
+# Apply the policy to CloudWatch
+resource "aws_cloudwatch_log_resource_policy" "route53_query_logging_policy" {
+  provider        = aws.us-east-1
+  policy_document = data.aws_iam_policy_document.route53_query_logging_policy.json
+  policy_name     = "route53-query-logging-policy"
 }
 
 resource "aws_cloudwatch_log_group" "route53_logs" {
