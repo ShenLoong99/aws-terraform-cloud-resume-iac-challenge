@@ -6,6 +6,13 @@
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.0 |
 
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.100.0 |
+| <a name="provider_aws.us-east-1"></a> [aws.us-east-1](#provider\_aws.us-east-1) | 5.100.0 |
+
 ## Modules
 
 No modules.
@@ -26,6 +33,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | Domain name of the S3 bucket | `string` | n/a | yes |
 | <a name="input_route53_zone_id"></a> [route53\_zone\_id](#input\_route53\_zone\_id) | The ID of the Route 53 Hosted Zone | `string` | n/a | yes |
+| <a name="input_s3_bucket_domain"></a> [s3\_bucket\_domain](#input\_s3\_bucket\_domain) | The regional domain name of the S3 bucket (e.g., resume-bucket.s3.amazonaws.com) | `string` | n/a | yes |
 
 ## Outputs
 

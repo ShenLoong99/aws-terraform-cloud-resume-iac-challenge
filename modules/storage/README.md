@@ -7,6 +7,13 @@
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.0 |
 
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.100.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.8.0 |
+
 ## Modules
 
 No modules.
@@ -34,7 +41,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_domain_name"></a> [domain\_name](#output\_domain\_name) | Domain name of the S3 bucket |
 | <a name="output_s3_arn"></a> [s3\_arn](#output\_s3\_arn) | ARN of the S3 bucket |
+| <a name="output_s3_bucket_domain"></a> [s3\_bucket\_domain](#output\_s3\_bucket\_domain) | The regional domain name of the S3 bucket (e.g., resume-bucket.s3.amazonaws.com) |
 | <a name="output_website_bucket_id"></a> [website\_bucket\_id](#output\_website\_bucket\_id) | The id of the S3 bucket |
 <!-- END_TF_DOCS -->

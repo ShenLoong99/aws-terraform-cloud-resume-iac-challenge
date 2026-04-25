@@ -9,7 +9,7 @@ resource "aws_cloudfront_origin_access_control" "resume_oac" {
 # Create the CloudFront Distribution
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
-    domain_name              = var.domain_name
+    domain_name              = var.s3_bucket_domain
     origin_id                = "S3Origin"
     origin_access_control_id = aws_cloudfront_origin_access_control.resume_oac.id
   }
