@@ -14,6 +14,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     origin_access_control_id = aws_cloudfront_origin_access_control.resume_oac.id
   }
 
+  aliases = [var.domain_name]
+
   enabled             = true
   default_root_object = "index.html"
 
