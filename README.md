@@ -143,23 +143,22 @@ This section is automatically updated with the latest infrastructure details.
 <summary><b>Detailed Infrastructure Specifications</b></summary>
 
 <!-- BEGIN_TF_DOCS -->
-
 ## Requirements
 
-| Name                                                                     | Version  |
-| ------------------------------------------------------------------------ | -------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.5.0 |
-| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | ~> 5.0   |
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.0 |
 
 ## Modules
 
-| Name                                                        | Source             | Version |
-| ----------------------------------------------------------- | ------------------ | ------- |
-| <a name="module_api"></a> [api](#module_api)                | ./modules/api      | n/a     |
-| <a name="module_cdn"></a> [cdn](#module_cdn)                | ./modules/cdn      | n/a     |
-| <a name="module_database"></a> [database](#module_database) | ./modules/database | n/a     |
-| <a name="module_lambda"></a> [lambda](#module_lambda)       | ./modules/lambda   | n/a     |
-| <a name="module_storage"></a> [storage](#module_storage)    | ./modules/storage  | n/a     |
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_api"></a> [api](#module\_api) | ./modules/api | n/a |
+| <a name="module_cdn"></a> [cdn](#module\_cdn) | ./modules/cdn | n/a |
+| <a name="module_database"></a> [database](#module\_database) | ./modules/database | n/a |
+| <a name="module_lambda"></a> [lambda](#module\_lambda) | ./modules/lambda | n/a |
+| <a name="module_storage"></a> [storage](#module\_storage) | ./modules/storage | n/a |
 
 ## Resources
 
@@ -167,23 +166,23 @@ No resources.
 
 ## Inputs
 
-| Name                                                                  | Description                  | Type     | Default          | Required |
-| --------------------------------------------------------------------- | ---------------------------- | -------- | ---------------- | :------: |
-| <a name="input_aws_region"></a> [aws_region](#input_aws_region)       | AWS region                   | `string` | `"us-east-1"`    |    no    |
-| <a name="input_domain_name"></a> [domain_name](#input_domain_name)    | Domain name of the S3 bucket | `string` | n/a              |   yes    |
-| <a name="input_project_name"></a> [project_name](#input_project_name) | Project name prefix          | `string` | `"cloud-resume"` |    no    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region | `string` | `"us-east-1"` | no |
+| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | Domain name of the S3 bucket | `string` | n/a | yes |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name prefix | `string` | `"cloud-resume"` | no |
 
 ## Outputs
 
-| Name                                                                                      | Description                                 |
-| ----------------------------------------------------------------------------------------- | ------------------------------------------- |
-| <a name="output_api_url"></a> [api_url](#output_api_url)                                  | The URL of the API Gateway                  |
-| <a name="output_aws_region"></a> [aws_region](#output_aws_region)                         | The AWS region where resources are deployed |
-| <a name="output_cloudfront_dist_id"></a> [cloudfront_dist_id](#output_cloudfront_dist_id) | The ID of the CloudFront distribution       |
-| <a name="output_lambda_arn"></a> [lambda_arn](#output_lambda_arn)                         | The ARN of the Lambda function              |
-| <a name="output_website_bucket_id"></a> [website_bucket_id](#output_website_bucket_id)    | The name of the S3 bucket                   |
-| <a name="output_website_url"></a> [website_url](#output_website_url)                      | The URL of the CloudFront distribution      |
-
+| Name | Description |
+|------|-------------|
+| <a name="output_api_url"></a> [api\_url](#output\_api\_url) | The URL of the API Gateway |
+| <a name="output_aws_region"></a> [aws\_region](#output\_aws\_region) | The AWS region where resources are deployed |
+| <a name="output_cloudfront_dist_id"></a> [cloudfront\_dist\_id](#output\_cloudfront\_dist\_id) | The ID of the CloudFront distribution |
+| <a name="output_lambda_arn"></a> [lambda\_arn](#output\_lambda\_arn) | The ARN of the Lambda function |
+| <a name="output_resume_url"></a> [resume\_url](#output\_resume\_url) | The permanent URL for the Cloud Resume |
+| <a name="output_website_bucket_id"></a> [website\_bucket\_id](#output\_website\_bucket\_id) | The name of the S3 bucket |
+| <a name="output_website_url"></a> [website\_url](#output\_website\_url) | The URL of the CloudFront distribution |
 <!-- END_TF_DOCS -->
 </details>
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>

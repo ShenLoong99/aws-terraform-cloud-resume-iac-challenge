@@ -28,6 +28,7 @@ output "aws_region" {
   value       = var.aws_region
 }
 
-# output "custom_domain_url" {
-#   value = "https://${aws_route53_record.www.name}"
-# }
+output "resume_url" {
+  description = "The permanent URL for the Cloud Resume"
+  value       = module.cdn.custom_domain_url
+}

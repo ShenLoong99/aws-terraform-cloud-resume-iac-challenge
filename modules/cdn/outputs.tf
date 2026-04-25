@@ -12,3 +12,8 @@ output "cdn_arn" {
   description = "The ARN of the CloudFront distribution"
   value       = aws_cloudfront_distribution.s3_distribution.arn
 }
+
+output "custom_domain_url" {
+  description = "The permanent URL for the Cloud Resume"
+  value       = "https://${aws_route53_record.www.name}"
+}
