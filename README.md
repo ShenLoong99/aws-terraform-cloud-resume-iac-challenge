@@ -163,9 +163,7 @@ This section is automatically updated with the latest infrastructure details.
 
 ## Resources
 
-| Name                                                                                                                                          | Type     |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| [aws_cloudwatch_log_group.lambda_log_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
+No resources.
 
 ## Inputs
 
