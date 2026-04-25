@@ -1,4 +1,4 @@
-# The Certificate Request
+# This requests the certificate
 resource "aws_acm_certificate" "cert" {
   provider          = aws.us-east-1
   domain_name       = var.domain_name
@@ -9,7 +9,7 @@ resource "aws_acm_certificate" "cert" {
   }
 }
 
-# Create the DNS records in Route 53 for ACM Validation
+# This automatically creates the DNS record in Route 53
 resource "aws_route53_record" "cert_validation" {
   for_each = {
     for dvo in aws_acm_certificate.cert.domain_validation_options : dvo.domain_name => {
@@ -27,10 +27,9 @@ resource "aws_route53_record" "cert_validation" {
   zone_id         = var.route53_zone_id
 }
 
-# The Validation Waiter
+# This waits for AWS to see the record and issue the cert
 resource "aws_acm_certificate_validation" "cert" {
-  provider        = aws.us-east-1
-  certificate_arn = aws_acm_certificate.cert.arn
-  # Route 53 uses 'fqdn' as the attribute name
+  provider                = aws.us-east-1
+  certificate_arn         = aws_acm_certificate.cert.arn
   validation_record_fqdns = [for record in aws_route53_record.cert_validation : record.fqdn]
 }
