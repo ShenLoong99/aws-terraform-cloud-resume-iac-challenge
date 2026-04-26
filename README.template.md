@@ -58,19 +58,23 @@
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
 
 <h2 id="built-with">Built With</h2>
-<p>
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/terraform/terraform-original.svg" alt="terraform" width="45" height="45" style="margin: 10px;"/>
-    <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/aws/aws.png" alt="aws" width="45" height="45" style="margin: 10px;"/>
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="45" height="45" style="margin: 10px;"/>
-    <img src="https://raw.githubusercontent.com/weibeld/aws-icons-svg/main/q1-2022/Architecture-Service-Icons_01312022/Arch_Compute/48/Arch_AWS-Lambda_48.svg" alt="lambda" width="45" height="45" style="margin: 10px;">
-    <img src="https://raw.githubusercontent.com/weibeld/aws-icons-svg/main/q1-2022/Architecture-Service-Icons_01312022/Arch_App-Integration/Arch_48/Arch_ Amazon-API-Gateway_48.svg" alt="api-gateway" width="45" height="45" style="margin: 10px;"/>
-    <img src="https://raw.githubusercontent.com/weibeld/aws-icons-svg/main/q1-2022/Architecture-Service-Icons_01312022/Arch_Database/48/Arch_Amazon-DynamoDB_48.svg" alt="dynamodb" width="45" height="45" style="margin: 10px;"/>
-    <img src="https://raw.githubusercontent.com/weibeld/aws-icons-svg/main/q1-2022/Resource-Icons_01312022/Res_Storage/Res_48_Light/Res_Amazon-Simple-Storage-Service_S3-Standard_48_Light.svg" alt="s3" width="45" height="45" style="margin: 10px;"/>
-    <img src="https://raw.githubusercontent.com/weibeld/aws-icons-svg/main/q1-2022/Architecture-Service-Icons_01312022/Arch_Networking-Content-Delivery/48/Arch_Amazon-CloudFront_48.svg" alt="cloudfront" width="45" height="45" style="margin: 10px;"/>
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/githubactions/githubactions-original.svg" alt="github-actions" width="45" height="45" style="margin: 10px;"/>
-</p>
+<div align="left">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/terraform/terraform-original.svg" alt="terraform" width="45" height="45" />
+    <img src="https://raw.githubusercontent.com/weibeld/aws-icons-svg/main/q1-2022/Architecture-Service-Icons_01312022/Arch_Networking-Content-Delivery/48/Arch_Amazon-Route-53_48.svg" alt="terraform" width="45" height="45" />
+    <img src="https://raw.githubusercontent.com/weibeld/aws-icons-svg/main/q1-2022/Architecture-Service-Icons_01312022/Arch_Security-Identity-Compliance/48/Arch_AWS-Certificate-Manager_48.svg" alt="terraform" width="45" height="45" />
+    <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/aws/aws.png" alt="aws" width="45" height="45" />
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="45" height="45" />
+    <img src="https://raw.githubusercontent.com/weibeld/aws-icons-svg/main/q1-2022/Architecture-Service-Icons_01312022/Arch_Compute/48/Arch_AWS-Lambda_48.svg" alt="lambda" width="45" height="45" >
+    <img src="https://raw.githubusercontent.com/weibeld/aws-icons-svg/main/q1-2022/Architecture-Service-Icons_01312022/Arch_App-Integration/Arch_48/Arch_ Amazon-API-Gateway_48.svg" alt="api-gateway" width="45" height="45" />
+    <img src="https://raw.githubusercontent.com/weibeld/aws-icons-svg/main/q1-2022/Architecture-Service-Icons_01312022/Arch_Database/48/Arch_Amazon-DynamoDB_48.svg" alt="dynamodb" width="45" height="45" />
+    <img src="https://raw.githubusercontent.com/weibeld/aws-icons-svg/main/q1-2022/Resource-Icons_01312022/Res_Storage/Res_48_Light/Res_Amazon-Simple-Storage-Service_S3-Standard_48_Light.svg" alt="s3" width="45" height="45" />
+    <img src="https://raw.githubusercontent.com/weibeld/aws-icons-svg/main/q1-2022/Architecture-Service-Icons_01312022/Arch_Networking-Content-Delivery/48/Arch_Amazon-CloudFront_48.svg" alt="cloudfront" width="45" height="45" />
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/githubactions/githubactions-original.svg" alt="github-actions" width="45" height="45" />
+</div>
 <ul>
    <li><strong>Terraform Cloud</strong> – Remote state management and automated IaC execution.</li>
+   <li><strong>Amazon Route 53</strong> – Highly available Domain Name System (DNS) service.</li>
+   <li><strong>AWS Certificate Manager (ACM)</strong> – Provision and manage SSL/TLS certificates for HTTPS.</li>
    <li><strong>Amazon S3 & CloudFront (OAC)</strong> – Secure static web hosting with Origin Access Control.</li>
    <li><strong>AWS Lambda & API Gateway</strong> – Serverless backend for the visitor counter.</li>
    <li><strong>Amazon DynamoDB</strong> – NoSQL database for stateful counter persistence.</li>
@@ -88,7 +92,7 @@
 
 <h2 id="architecture">Architecture</h2>
 <img src="assets/aws-terraform-cloud-resume-iac-challenge.jpg" alt="architecture-diagram" />
-<p>The architecture follows a modern decoupled serverless flow:<code>User Browser</code> ➔ <code>CloudFront (HTTPS)</code> ➔ <code>S3 (Static Assets)</code><code>Frontend JS</code> ➔ <code>API Gateway</code> ➔ <code>Lambda</code> ➔ <code>DynamoDB (Atomic Update)</code></p>
+<p>The architecture follows a modern decoupled serverless flow:<code>User Browser</code> ➔ <code>Route 53 (DNS)</code> ➔ <code>CloudFront (HTTPS)</code> ➔ <code>S3 (Static Assets)</code><code>Frontend JS</code> ➔ <code>API Gateway</code> ➔ <code>Lambda</code> ➔ <code>DynamoDB (Atomic Update)</code></p>
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
 
 <h2 id="file-structure">File Structure</h2>
@@ -143,7 +147,9 @@ This section is automatically updated with the latest infrastructure details.
 <summary><b>Detailed Infrastructure Specifications</b></summary>
 
 <!-- BEGIN_TF_DOCS -->
+
 {{ .Content }}
+
 <!-- END_TF_DOCS -->
 </details>
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
@@ -322,7 +328,7 @@ This section is automatically updated with the latest infrastructure details.
    <li>[x] <strong>Serverless Backend:</strong> Lambda function with DynamoDB integration.</li>
    <li>[x] <strong>Infrastructure as Code:</strong> Full resource management via Terraform.</li>
    <li>[x] <strong>Automation:</strong> GitHub Actions pipeline with smoke testing.</li>
-   <li>[ ] <strong>Custom Domain:</strong> (Optional) Route 53 and ACM Certificate integration.</li>
+   <li>[x] <strong>Custom Domain:</strong> (Optional) Route 53 and ACM Certificate integration.</li>
 </ul>
 <div align="right"><a href="#readme-top">↑ Back to Top</a></div>
 
@@ -353,6 +359,18 @@ This section is automatically updated with the latest infrastructure details.
          <td>
             Corrected endpoint paths in the test scripts to align with Terraform's <code>api_endpoint</code> structure.<br>
             <img src="assets/test-website-error.png" alt="test-website-error" />
+        </td>
+      </tr>
+      <tr>
+         <td><strong>CloudWatch Log Group Race Condition</strong></td>
+         <td>
+            Resolved a <code>ResourceAlreadyExists</code> error by implementing <code>depends_on</code> in Terraform, ensuring the Log Group is created before the Lambda function can auto-generate one.
+        </td>
+      </tr>
+      <tr>
+         <td><strong>POSIX Path Conversion in Git Bash</strong></td>
+         <td>
+            Fixed <code>InvalidParameterException</code> during Terraform imports by using double-slashes (//) to prevent Git Bash from incorrectly translating AWS resource ARNs into Windows file paths.
         </td>
       </tr>
    </tbody>
@@ -402,6 +420,7 @@ This section is automatically updated with the latest infrastructure details.
         <li><strong>Principle of Least Privilege:</strong> Managed through a dedicated <code>iam</code> module that scope permissions specifically to Lambda, S3, and DynamoDB.</li>
         <li><strong>Encryption:</strong> S3 website storage and DynamoDB tables utilize AWS-managed encryption at rest.</li>
         <li><strong>Infrastructure Scanning:</strong> Static analysis via Checkov identifies security misconfigurations before deployment.</li>
+        <li><strong>Encryption in Transit:</strong> Implemented via <strong>ACM</strong> certificates, ensuring all traffic between the user and CloudFront is encrypted via HTTPS.</li>
       </ul>
     </td>
   </tr>
@@ -411,6 +430,7 @@ This section is automatically updated with the latest infrastructure details.
       <ul>
         <li><strong>Global Content Delivery:</strong> Utilization of <code>aws_cloudfront_distribution</code> ensures high availability and low latency via edge locations.</li>
         <li><strong>Managed Services:</strong> Leveraging serverless components (Lambda, DynamoDB) to remove the operational burden of server maintenance and recovery.</li>
+        <li><strong>Custom Domain Management:</strong> Using <strong>Route</strong> 53 for reliable DNS resolution with health checks and alias records pointing to global edge locations..</li>
       </ul>
     </td>
   </tr>
@@ -478,27 +498,19 @@ This section is automatically updated with the latest infrastructure details.
 
 [contributors-shield]: https://img.shields.io/github/contributors/{{GITHUB_USER}}/{{REPO_NAME}}.svg?style=for-the-badge
 [contributors-url]: {{REPO_URL}}/graphs/contributors
-
 [forks-shield]: https://img.shields.io/github/forks/{{GITHUB_USER}}/{{REPO_NAME}}.svg?style=for-the-badge
 [forks-url]: {{REPO_URL}}/network/members
-
 [stars-shield]: https://img.shields.io/github/stars/{{GITHUB_USER}}/{{REPO_NAME}}.svg?style=for-the-badge
 [stars-url]: {{REPO_URL}}/stargazers
-
 [issues-shield]: https://img.shields.io/github/issues/{{GITHUB_USER}}/{{REPO_NAME}}.svg?style=for-the-badge
 [issues-url]: {{REPO_URL}}/issues
-
 [license-shield]: https://img.shields.io/github/license/{{GITHUB_USER}}/{{REPO_NAME}}.svg?style=for-the-badge
 [license-url]: {{REPO_URL}}/blob/master/LICENSE.txt
-
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: {{LINKEDIN_URL}}
-
 [ci-shield]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/ci.yml/badge.svg
 [ci-url]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/ci.yml
-
 [cd-shield]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/cd.yml/badge.svg
 [cd-url]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/cd.yml
-
 [docs-shield]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/documentation.yml/badge.svg
 [docs-url]: https://github.com/{{GITHUB_USER}}/{{REPO_NAME}}/actions/workflows/documentation.yml
