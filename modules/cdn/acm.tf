@@ -17,10 +17,9 @@ data "aws_iam_policy_document" "route53_query_logging_policy" {
 
 # This requests the certificate
 resource "aws_acm_certificate" "cert" {
-  provider                  = aws.us-east-1
-  domain_name               = var.domain_name
-  subject_alternative_names = ["www.${var.domain_name}"]
-  validation_method         = "DNS"
+  provider          = aws.us-east-1
+  domain_name       = var.domain_name
+  validation_method = "DNS"
 
   lifecycle {
     create_before_destroy = true
@@ -61,22 +60,10 @@ resource "aws_route53_zone" "primary" {
   }
 }
 
+# Create the A record for the root domain
 resource "aws_route53_record" "root" {
   zone_id = aws_route53_zone.primary.zone_id
   name    = var.domain_name
-  type    = "A"
-
-  alias {
-    name                   = aws_cloudfront_distribution.s3_distribution.domain_name
-    zone_id                = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
-    evaluate_target_health = false
-  }
-}
-
-# Add A record to point to CloudFront distribution
-resource "aws_route53_record" "www" {
-  zone_id = aws_route53_zone.primary.zone_id
-  name    = "www.${var.domain_name}"
   type    = "A"
 
   alias {
