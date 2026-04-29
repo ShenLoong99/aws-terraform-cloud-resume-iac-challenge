@@ -15,5 +15,5 @@ output "cdn_arn" {
 
 output "custom_domain_url" {
   description = "The permanent URL for the Cloud Resume"
-  value       = "https://${aws_route53_record.www.name}"
+  value       = "https://${aws_route53_record.root.name}"
 }
